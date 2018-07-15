@@ -5,9 +5,13 @@ export default class ModuleList extends React.Component {
 
     constructor(props) {
         super(props)
+
     }
 
     state = {
+        newModule: {
+            title: ''
+        },
         modules: [
             { title: 'Module 1 - jQuery', id: 123 },
             { title: 'Module 2 - React', id: 234 },
@@ -18,11 +22,23 @@ export default class ModuleList extends React.Component {
         ]
     }
 
+    titleChanged = (event) => {
+        this.setState({
+            newModule: {
+                title: event.target.value
+            }
+        })
+    }
+
+    createModule = () => {
+        console.log(this.state.newModule.title)
+    }
+
+
     renderModuleList() {
         let modules = this.state.modules
             .map(function (module) {
-                return <ModuleListItem
-                    title={module.title} key={module.id} />
+                return <ModuleListItem title={module.title} key={module.id} />
             })
         return modules
     }
@@ -31,10 +47,14 @@ export default class ModuleList extends React.Component {
         return (
             <div>
                 <h3>Module List</h3>
+                <input className="form-control" placeholder="Module Name" onChange={this.titleChanged} />
+                <button className="btn btn-primary btn-block" onClick={this.createModule}>
+                    <i className="fa fa-plus"></i>
+                </button>
                 <ul className="list-group">
-                    { this.renderModuleList() }
+                    {this.renderModuleList()}
                 </ul>
-            </div>
+            </div >
         )
     }
 }
