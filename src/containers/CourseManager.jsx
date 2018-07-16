@@ -4,6 +4,7 @@ import CourseCard from '../components/CourseCard'
 import CourseEditor from './CourseEditor'
 
 export default class CourseManager extends React.Component {
+
     render() {
         return (
             <div className="container-fluid">
@@ -19,4 +20,5 @@ export default class CourseManager extends React.Component {
             </div>
         )
     }
+
 }

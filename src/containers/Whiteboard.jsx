@@ -12,4 +12,5 @@ export default class Whiteboard extends React.Component {
             </div>
         )
     }
+
 }

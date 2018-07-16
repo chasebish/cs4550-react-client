@@ -5,10 +5,6 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 
 export default class ModuleListItem extends React.Component {
 
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         return (
             <li className="list-group-item">
@@ -20,6 +16,7 @@ export default class ModuleListItem extends React.Component {
             </li >
         )
     }
+
 }
 
 ModuleListItem.propTypes = {

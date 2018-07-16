@@ -5,7 +5,6 @@ export default class ModuleList extends React.Component {
 
     constructor(props) {
         super(props)
-
     }
 
     state = {
@@ -57,4 +56,5 @@ export default class ModuleList extends React.Component {
             </div >
         )
     }
+
 }

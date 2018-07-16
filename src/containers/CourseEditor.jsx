@@ -5,6 +5,7 @@ import LessonTabs from './LessonTabs'
 import TopicPills from './TopicPills'
 
 export default class CourseEditor extends React.Component {
+
     render() {
         return (
             <div className="row">
@@ -18,4 +19,5 @@ export default class CourseEditor extends React.Component {
             </div>
         )
     }
+
 }
