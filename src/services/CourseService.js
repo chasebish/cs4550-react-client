@@ -36,6 +36,7 @@ export default class CourseService {
     }
 
     updateCourse(courseId, course) {
+        console.log(COURSE_API_URL + '/' + courseId)
         return fetch(COURSE_API_URL + '/' + courseId, {
             method: 'PUT',
             body: JSON.stringify(course),

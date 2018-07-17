@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { ListGroupItem } from 'react-bootstrap'
+import { Button, ListGroupItem } from 'react-bootstrap'
+
+import LinkButton from './LinkButton'
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 
@@ -10,15 +11,24 @@ export default class ModuleListItem extends React.Component {
     render() {
         return (
             <ListGroupItem>
-                {this.props.module.title}
-                <button
-                    onClick={() => this.props.delete(this.props.module.id)}
-                    className="btn-danger btn-sm">
-                    DELETE
-                </button>
-                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
-                    {this.props.module.title}
-                </Link>
+                <div className="row justify-content-between">
+                    <div>
+                        {this.props.module.title}
+                    </div>
+                    <div>
+                        <Button
+                            bsStyle='danger'
+                            bsSize='sm'
+                            onClick={() => this.props.delete(this.props.module.id)}>
+                            Delete
+                        </Button>
+                        <LinkButton
+                            bsSize='sm'
+                            to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
+                            {this.props.module.title}
+                        </LinkButton>
+                    </div>
+                </div>
             </ListGroupItem>
         )
     }

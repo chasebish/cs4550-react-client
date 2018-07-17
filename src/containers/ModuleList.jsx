@@ -1,16 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { ListGroup } from 'react-bootstrap'
+import { Button, ListGroup } from 'react-bootstrap'
 
 import ModuleEditor from './ModuleEditor'
 import ModuleListItem from '../components/ModuleListItem'
+
+import CourseService from '../services/CourseService'
 import ModuleService from '../services/ModuleService'
 
 export default class ModuleList extends React.Component {
 
     constructor(props) {
         super(props)
+        this.courseService = CourseService.instance
         this.moduleService = ModuleService.instance
     }
 
@@ -33,11 +36,19 @@ export default class ModuleList extends React.Component {
 
     createModule = () => {
         this.moduleService.createModule(this.state.courseId, this.state.module).then(() => {
+
+            const date = new Date()
+
+            const courseObj = {
+                modified: date
+            }
+
             this.setState({
                 module: {
                     title: ''
                 }
             })
+            this.courseService.updateCourse(this.state.courseId, courseObj)
             this.findAllModulesForCourse(this.state.courseId)
         })
     }
@@ -93,8 +104,8 @@ export default class ModuleList extends React.Component {
                 <div className="row">
                     <div className='col-4'>
                         <h4>Module List for courseId: {this.state.courseId}</h4>
-                        <input value={this.state.module.title} onChange={this.setModuleTitle} className="form-control" />
-                        <button onClick={this.createModule} className="btn btn-secondary">Create</button>
+                        <input value={this.state.module.title} onChange={this.setModuleTitle} className="col form-control" />
+                        <Button bsStyle='primary' onClick={this.createModule} className='col'>Create</Button>
                         {this.renderModules()}
                     </div>
                     <div className='col-8'>
