@@ -11,16 +11,28 @@ export default class CourseEditor extends React.Component {
     }
 
     componentDidMount() {
-        this.selectCourse(this.props.match.params.courseId, this.props.match.params.title)
+        this.selectCourse(this.props.match.params.courseId)
+
+        if (this.props.location.state && this.props.location.state.courseTitle) {
+            this.setCourseTitle(this.props.location.state.courseTitle)
+        } else {
+            this.setCourseTitle('')
+        }
+
     }
 
     componentWillReceiveProps(newProps) {
-        this.selectCourse(newProps.match.params.courseId, newProps.match.params.title)
+        this.selectCourse(newProps.match.params.courseId)
     }
 
-    selectCourse = (courseId, courseTitle) => {
+    selectCourse = (courseId) => {
         this.setState({
-            courseId: courseId,
+            courseId: courseId
+        })
+    }
+
+    setCourseTitle = (courseTitle) => {
+        this.setState({
             courseTitle: courseTitle
         })
     }
@@ -28,7 +40,7 @@ export default class CourseEditor extends React.Component {
     render() {
         return (
             <div>
-                <h3>Course {(this.props.location.state && this.props.location.state.courseTitle) ? this.props.location.state.courseTitle : ''}
+                <h3>Course {this.state.courseTitle}
                 </h3>
                 <ModuleList courseId={this.state.courseId} />
             </div>
