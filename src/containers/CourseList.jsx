@@ -58,7 +58,7 @@ export default class CourseList extends React.Component {
 
     renderCourseRows = () => {
         let rows = this.state.courses.map((course) => {
-            return <CourseRow course={course} key={course.title} delete={this.deleteCourse}/>
+            return <CourseRow course={course} key={course.title} delete={this.deleteCourse} />
         })
         return rows
     }
@@ -69,9 +69,6 @@ export default class CourseList extends React.Component {
                 <h2>Course List</h2>
                 <table className='table'>
                     <thead>
-                        <tr>
-                            <th>Title</th>
-                        </tr>
                         <tr>
                             <th><input id="titleFld" placeholder="CS0000" onChange={this.titleChanged} className="form-control" /></th>
                             <th><button onClick={this.createCourse} className="btn btn-primary">Add</button></th>

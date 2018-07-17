@@ -9,12 +9,18 @@ export default class Whiteboard extends React.Component {
     render() {
         return (
             <Router>
-                <div>
+                <div className="container-fluid">
                     <h1>Whiteboard</h1>
-                    <Route path="/course/:courseId/edit" component={CourseEditor}>
-                    </Route>
-                    <Route path="/course" component={CourseList}>
-                    </Route>
+                    <div className="row">
+                        <div className="col-8">
+                            <Route path="/course" component={CourseList}>
+                            </Route>
+                        </div>
+                        <div className="col-4">
+                            <Route path="/course/:courseId/edit" component={CourseEditor}>
+                            </Route>
+                        </div>
+                    </div>
                 </div>
             </Router >
         )

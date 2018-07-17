@@ -1,11 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
+import ModuleList from './ModuleList'
 
 export default class CourseEditor extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.selectCourse
-    }
 
     state = {
         courseId: ''
@@ -24,24 +22,18 @@ export default class CourseEditor extends React.Component {
         this.setState({ courseId: courseId })
     }
 
-    // render() {
-    //     return (
-    //         <div className="row">
-    //             <div className="col-4">
-    //                 <ModuleList />
-    //             </div>
-    //             <div className="col-4">
-    //                 <LessonTabs />
-    //                 <TopicPills />
-    //             </div>
-    //         </div>
-    //     )
-    // }
-
     render() {
         return (
-            <h3>Course {this.state.courseId} REEE</h3>
+            <div>
+                <h3>Course {this.state.courseId}
+                </h3>
+                <ModuleList courseId={this.state.courseId} />
+            </div>
         )
     }
 
+}
+
+CourseEditor.propTypes = {
+    match: PropTypes.object
 }
