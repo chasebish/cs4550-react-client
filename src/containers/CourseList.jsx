@@ -3,6 +3,8 @@ import React from 'react'
 import CourseRow from '../components/CourseRow'
 import CourseService from '../services/CourseService'
 
+import './containers.css'
+
 export default class CourseList extends React.Component {
 
     constructor(props) {
@@ -73,8 +75,8 @@ export default class CourseList extends React.Component {
         return (
             <div>
                 <h2>Course List</h2>
-                <div className='row'>
-                    <input id="titleFld" placeholder="CS0000" value={this.state.newCourse.title} onChange={this.titleChanged} className="form-control col-6" />
+                <div className='row chaseTitleInput'>
+                    <input id="titleFld" placeholder="CS0000" value={this.state.newCourse.title} onChange={this.titleChanged} className="form-control col-11" />
                     <button onClick={this.createCourse} className="btn btn-primary">Add</button>
                 </div>
                 <div className='table-responsive'>

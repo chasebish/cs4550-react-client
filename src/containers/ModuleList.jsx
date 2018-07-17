@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { ListGroup } from 'react-bootstrap'
 
 import ModuleEditor from './ModuleEditor'
 import ModuleListItem from '../components/ModuleListItem'
@@ -79,7 +80,11 @@ export default class ModuleList extends React.Component {
             )
         })
 
-        return <ul>{modules}</ul>
+        return (
+            <ListGroup>
+                {modules}
+            </ListGroup>
+        )
     }
 
     render() {
