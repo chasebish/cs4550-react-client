@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+
+import LinkButton from '../components/LinkButton'
 
 export default class CourseRow extends React.Component {
 
@@ -11,12 +12,16 @@ export default class CourseRow extends React.Component {
                     {this.props.course.title}
                 </td>
                 <td>
+                    {this.props.course.created}
+                </td>
+                <td>
+                    {this.props.course.modified}
+                </td>
+                <td>
                     <button className="btn btn-danger" onClick={() => { this.props.delete(this.props.course.id) }}>
                         Delete
                     </button>
-                    <Link to={`/course/${this.props.course.id}/edit`}>
-                        {this.props.course.title}
-                    </Link>
+                    <LinkButton title={this.props.course.title} to={`/course/${this.props.course.id}/edit`} />
                 </td>
             </tr>
         )

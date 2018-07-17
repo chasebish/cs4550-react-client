@@ -7,7 +7,6 @@ export default class CourseList extends React.Component {
 
     constructor(props) {
         super(props)
-
         this.courseService = CourseService.instance
     }
 
@@ -53,12 +52,19 @@ export default class CourseList extends React.Component {
         }
 
         this.courseService.createCourse(courseObj)
-            .then(() => { this.findAllCourses() })
+            .then(() => {
+                this.setState({
+                    newCourse: {
+                        title: ''
+                    }
+                })
+                this.findAllCourses()
+            })
     }
 
     renderCourseRows = () => {
         let rows = this.state.courses.map((course) => {
-            return <CourseRow course={course} key={course.title} delete={this.deleteCourse} />
+            return <CourseRow course={course} key={course.id} delete={this.deleteCourse} />
         })
         return rows
     }
@@ -67,17 +73,25 @@ export default class CourseList extends React.Component {
         return (
             <div>
                 <h2>Course List</h2>
-                <table className='table'>
-                    <thead>
-                        <tr>
-                            <th><input id="titleFld" placeholder="CS0000" onChange={this.titleChanged} className="form-control" /></th>
-                            <th><button onClick={this.createCourse} className="btn btn-primary">Add</button></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderCourseRows()}
-                    </tbody>
-                </table>
+                <div className='row'>
+                    <input id="titleFld" placeholder="CS0000" value={this.state.newCourse.title} onChange={this.titleChanged} className="form-control col-6" />
+                    <button onClick={this.createCourse} className="btn btn-primary">Add</button>
+                </div>
+                <div className='table-responsive'>
+                    <table className='table'>
+                        <thead>
+                            <tr>
+                                <th>Course Name</th>
+                                <th>Date Created</th>
+                                <th>Date Modified</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.renderCourseRows()}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }
