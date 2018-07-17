@@ -11,7 +11,14 @@ export default class ModuleListItem extends React.Component {
 
     render() {
         return (
-            <li>{this.props.module.title}</li>
+            <li>
+                {this.props.module.title}
+                <button
+                    onClick={() => this.props.delete(this.props.module.id)}
+                    className="btn-danger btn-sm">
+                    DELETE
+                </button>
+            </li>
             // <li className="list-group-item">
             //     {this.props.title}
             //     <div className="pull-right">
@@ -25,5 +32,6 @@ export default class ModuleListItem extends React.Component {
 }
 
 ModuleListItem.propTypes = {
+    delete: PropTypes.func,
     module: PropTypes.object
 }

@@ -34,6 +34,12 @@ export default class ModuleList extends React.Component {
         })
     }
 
+    deleteModule = (moduleId) => {
+        this.moduleService.deleteModule(moduleId).then(() => {
+            this.findAllModulesForCourse(this.state.courseId)
+        })
+    }
+
     setCourseId = (courseId) => {
         this.setState({ courseId: courseId })
     }
@@ -58,7 +64,7 @@ export default class ModuleList extends React.Component {
 
         let modules = this.state.modules.map((module) => {
             return (
-                <ModuleListItem key={module.id} module={module} />
+                <ModuleListItem key={module.id} module={module} delete={this.deleteModule}/>
             )
         })
 
