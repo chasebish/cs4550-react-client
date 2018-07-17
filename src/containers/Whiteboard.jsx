@@ -11,12 +11,12 @@ export default class Whiteboard extends React.Component {
             <Router>
                 <div className="container-fluid">
                     <h1>Whiteboard</h1>
-                    <div className="row">
-                        <div className="col-8">
+                    <div /*className="row"*/>
+                        <div /*className="col-8"*/>
                             <Route path="/course" component={CourseList}>
                             </Route>
                         </div>
-                        <div className="col-4">
+                        <div /*className="col-4"*/>
                             <Route path="/course/:courseId/edit" component={CourseEditor}>
                             </Route>
                         </div>

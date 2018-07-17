@@ -1,13 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 
 export default class ModuleListItem extends React.Component {
-
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         return (
@@ -18,20 +15,17 @@ export default class ModuleListItem extends React.Component {
                     className="btn-danger btn-sm">
                     DELETE
                 </button>
+                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
+                    {this.props.module.title}
+                </Link>
             </li>
-            // <li className="list-group-item">
-            //     {this.props.title}
-            //     <div className="pull-right">
-            //         <i className="fa fa-trash"></i>
-            //         <i className="fa fa-pencil"></i>
-            //     </div>
-            // </li>
         )
     }
 
 }
 
 ModuleListItem.propTypes = {
+    courseId: PropTypes.string,
     delete: PropTypes.func,
     module: PropTypes.object
 }

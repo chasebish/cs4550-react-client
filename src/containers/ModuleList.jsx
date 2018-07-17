@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
+import ModuleEditor from './ModuleEditor'
 import ModuleListItem from '../components/ModuleListItem'
 import ModuleService from '../services/ModuleService'
 
@@ -64,7 +66,11 @@ export default class ModuleList extends React.Component {
 
         let modules = this.state.modules.map((module) => {
             return (
-                <ModuleListItem key={module.id} module={module} delete={this.deleteModule}/>
+                <ModuleListItem
+                    key={module.id}
+                    module={module}
+                    courseId={this.state.courseId}
+                    delete={this.deleteModule} />
             )
         })
 
@@ -73,12 +79,20 @@ export default class ModuleList extends React.Component {
 
     render() {
         return (
-            <div>
-                <h4>Module List for courseId: {this.state.courseId}</h4>
-                <input value={this.state.module.title} onChange={this.setModuleTitle} className="form-control" />
-                <button onClick={this.createModule} className="btn btn-secondary">Create</button>
-                {this.renderModules()}
-            </div>
+            <Router>
+                <div className="row">
+                    <div className='col-4'>
+                        <h4>Module List for courseId: {this.state.courseId}</h4>
+                        <input value={this.state.module.title} onChange={this.setModuleTitle} className="form-control" />
+                        <button onClick={this.createModule} className="btn btn-secondary">Create</button>
+                        {this.renderModules()}
+                    </div>
+                    <div className='col-8'>
+                        <Route path="/course/:courseId/module/:moduleId"
+                            component={ModuleEditor} />
+                    </div>
+                </div>
+            </Router>
         )
     }
 
