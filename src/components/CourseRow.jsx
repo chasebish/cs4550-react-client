@@ -9,6 +9,11 @@ export default class CourseRow extends React.Component {
                 <td>
                     {this.props.course.title}
                 </td>
+                <td>
+                    <button className="btn btn-danger" onClick={() => { this.props.delete(this.props.course.id) }}>
+                        Delete
+                    </button>
+                </td>
             </tr>
         )
     }
@@ -16,5 +21,6 @@ export default class CourseRow extends React.Component {
 }
 
 CourseRow.propTypes = {
-    course: PropTypes.object
+    course: PropTypes.object,
+    delete: PropTypes.func
 }

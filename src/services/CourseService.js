@@ -15,9 +15,46 @@ export default class CourseService {
         return this[_singleton]
     }
 
+    createCourse(course) {
+        return fetch(COURSE_API_URL, {
+            method: 'POST',
+            body: JSON.stringify(course),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response) {
+            return response.json()
+        })
+    }
+
+    deleteCourse(courseId) {
+        return fetch(COURSE_API_URL + '/' + courseId, {
+            method: 'DELETE'
+        }).then(function (response) {
+            return response
+        })
+    }
+
+    updateCourse(courseId, course) {
+        return fetch(COURSE_API_URL + '/' + courseId, {
+            method: 'PUT',
+            body: JSON.stringify(course),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
+    findCourseById(courseId) {
+        return fetch(COURSE_API_URL + '/' + courseId)
+            .then(function (response) {
+                return response.json()
+            })
+    }
+
     findAllCourses() {
         return fetch(COURSE_API_URL)
-            .then(function(response){
+            .then(function (response) {
                 return response.json()
             })
     }
