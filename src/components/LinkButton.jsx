@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 const LinkButton = (props) => {
+
     return (
         <Link to={props.to}>
             <Button bsSize={props.bsSize ? props.bsSize : null} bsStyle='primary'>
@@ -16,7 +17,7 @@ const LinkButton = (props) => {
 LinkButton.propTypes = {
     bsSize: PropTypes.string,
     title: PropTypes.string,
-    to: PropTypes.string
+    to: PropTypes.any
 }
 
 export default LinkButton

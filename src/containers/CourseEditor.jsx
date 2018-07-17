@@ -26,9 +26,10 @@ export default class CourseEditor extends React.Component {
     }
 
     render() {
+        console.log(this.props.location)
         return (
             <div>
-                <h3>Course {this.state.courseId}
+                <h3>Course {this.props.location.state.courseTitle}
                 </h3>
                 <ModuleList courseId={this.state.courseId} />
             </div>
@@ -38,5 +39,7 @@ export default class CourseEditor extends React.Component {
 }
 
 CourseEditor.propTypes = {
+    courseTitle: PropTypes.string,
+    location: PropTypes.object,
     match: PropTypes.object
 }
