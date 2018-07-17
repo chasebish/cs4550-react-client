@@ -23,8 +23,10 @@ export default class ModuleService {
                 'Content-Type': 'application/json'
             },
             method: 'POST'
-        }).then((response) => {
-            return response.json()
-        })
+        }).then((response) => response.json())
+    }
+
+    findAllModulesForCourse(courseId) {
+        return fetch(MODULE_API_URL.replace('CID', courseId)).then((response) => response.json())
     }
 }

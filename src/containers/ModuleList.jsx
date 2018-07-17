@@ -1,19 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import ModuleListItem from '../components/ModuleListItem'
 import ModuleService from '../services/ModuleService'
 
 export default class ModuleList extends React.Component {
 
     constructor(props) {
         super(props)
+        this.moduleService = ModuleService.instance
     }
 
     state = {
         courseId: '',
         module: {
             title: ''
-        }
+        },
+        modules: []
     }
 
     componentDidMount() {
@@ -22,10 +25,13 @@ export default class ModuleList extends React.Component {
 
     componentWillReceiveProps(newProps) {
         this.setCourseId(newProps.courseId)
+        this.findAllModulesForCourse(newProps.courseId)
     }
 
     createModule = () => {
-        ModuleService.createModule(this.state.courseId, this.state.module)
+        this.moduleService.createModule(this.state.courseId, this.state.module).then(() => {
+            this.findAllModulesForCourse(this.state.courseId)
+        })
     }
 
     setCourseId = (courseId) => {
@@ -40,12 +46,32 @@ export default class ModuleList extends React.Component {
         })
     }
 
+    setModules = (modules) => {
+        this.setState({ modules: modules })
+    }
+
+    findAllModulesForCourse = (courseId) => {
+        this.moduleService.findAllModulesForCourse(courseId).then((modules) => this.setModules(modules))
+    }
+
+    renderModules = () => {
+
+        let modules = this.state.modules.map((module) => {
+            return (
+                <ModuleListItem key={module.id} module={module} />
+            )
+        })
+
+        return <ul>{modules}</ul>
+    }
+
     render() {
         return (
             <div>
                 <h4>Module List for courseId: {this.state.courseId}</h4>
                 <input value={this.state.module.title} onChange={this.setModuleTitle} className="form-control" />
                 <button onClick={this.createModule} className="btn btn-secondary">Create</button>
+                {this.renderModules()}
             </div>
         )
     }
