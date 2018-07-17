@@ -6,20 +6,23 @@ import ModuleList from './ModuleList'
 export default class CourseEditor extends React.Component {
 
     state = {
-        courseId: ''
+        courseId: '',
+        courseTitle: ''
     }
 
     componentDidMount() {
-        this.selectCourse(this.props.match.params.courseId)
+        this.selectCourse(this.props.match.params.courseId, this.props.match.params.title)
     }
 
     componentWillReceiveProps(newProps) {
-        this.selectCourse(newProps.match.params.courseId)
+        this.selectCourse(newProps.match.params.courseId, newProps.match.params.title)
     }
 
-
-    selectCourse = (courseId) => {
-        this.setState({ courseId: courseId })
+    selectCourse = (courseId, courseTitle) => {
+        this.setState({
+            courseId: courseId,
+            courseTitle: courseTitle
+        })
     }
 
     render() {

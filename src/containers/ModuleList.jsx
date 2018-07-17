@@ -32,6 +32,11 @@ export default class ModuleList extends React.Component {
 
     createModule = () => {
         this.moduleService.createModule(this.state.courseId, this.state.module).then(() => {
+            this.setState({
+                module: {
+                    title: ''
+                }
+            })
             this.findAllModulesForCourse(this.state.courseId)
         })
     }
