@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Button } from 'react-bootstrap'
+import { Button, Tab, Tabs } from 'react-bootstrap'
 
 import CourseService from '../services/CourseService'
 import LessonService from '../services/LessonService'
@@ -22,7 +22,7 @@ export default class LessonTabs extends React.Component {
         lesson: {
             title: ''
         },
-        selectedTab: ''
+        selectedTab: undefined
     }
 
     componentDidMount() {
@@ -89,8 +89,8 @@ export default class LessonTabs extends React.Component {
         })
     }
 
-    setSelected = (event) => {
-        console.log(event)
+    handleSelect = (key) => {
+        this.setState({ selectedTab: key })
     }
 
     renderLessons = () => {
@@ -101,22 +101,23 @@ export default class LessonTabs extends React.Component {
 
         let lessons = this.state.lessons.map((lesson) => {
             return (
-                <li key={lesson.title} className="nav-item">
-                    <a className="nav-link" onClick={this.setSelected}>{lesson.title}</a>
-                </li>
+                <Tab key={lesson.id} eventKey={lesson.id} title={lesson.title}>
+                    {lesson.title}
+                </Tab>
             )
         })
 
         return (
-            <ul className="nav nav-tabs">
+            <Tabs id='lessonTabs' defaultActiveKey={this.state.selectedTab} onSelect={this.handleSelect} animation={true}>
                 {lessons}
-            </ul>
+            </Tabs>
         )
 
 
     }
 
     render() {
+        console.log(this.state.selectedTab)
         return (
             <Router>
                 <div className="row">

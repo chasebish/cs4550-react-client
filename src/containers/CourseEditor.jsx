@@ -41,8 +41,8 @@ export default class CourseEditor extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className='row'>
+            <div className='container-fluid'>
+                <div>
                     <h3>Course {this.state.courseTitle}</h3>
                     <Button
                         bsStyle='info'

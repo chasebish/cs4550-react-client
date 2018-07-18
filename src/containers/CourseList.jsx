@@ -3,6 +3,8 @@ import React from 'react'
 import CourseRow from '../components/CourseRow'
 import CourseService from '../services/CourseService'
 
+import { Col, Grid, Row } from 'react-bootstrap'
+
 import './containers.css'
 
 export default class CourseList extends React.Component {
@@ -73,12 +75,18 @@ export default class CourseList extends React.Component {
 
     render() {
         return (
-            <div>
+            <Grid fluid={true}>
                 <h2>Course List</h2>
-                <div className='row chaseTitleInput'>
-                    <input id="titleFld" placeholder="CS0000" value={this.state.newCourse.title} onChange={this.titleChanged} className="form-control col-11" />
-                    <button onClick={this.createCourse} className="btn btn-primary">Add</button>
-                </div>
+                <Row>
+                    <Col sm={9}>
+                        <div className="input-group">
+                            <input id="titleFld" placeholder="CS0000" value={this.state.newCourse.title} onChange={this.titleChanged} className="form-control" />
+                            <span className='input-group-btn'>
+                                <button onClick={this.createCourse} className="btn btn-primary">Add Course</button>
+                            </span>
+                        </div>
+                    </Col>
+                </Row>
                 <div className='table-responsive'>
                     <table className='table'>
                         <thead>
@@ -94,7 +102,7 @@ export default class CourseList extends React.Component {
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </Grid>
         )
     }
 }
