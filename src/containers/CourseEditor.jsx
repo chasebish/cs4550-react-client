@@ -2,9 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'react-bootstrap'
 
+import CourseService from '../services/CourseService'
 import ModuleList from './ModuleList'
 
 export default class CourseEditor extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.courseService = CourseService.instance
+    }
 
     state = {
         courseId: '',
@@ -13,13 +19,8 @@ export default class CourseEditor extends React.Component {
 
     componentDidMount() {
         this.selectCourse(this.props.match.params.courseId)
-
-        if (this.props.location.state && this.props.location.state.courseTitle) {
-            this.setCourseTitle(this.props.location.state.courseTitle)
-        } else {
-            this.setCourseTitle('')
-        }
-
+        this.courseService.findCourseById(this.props.match.params.courseId)
+            .then((response) => this.setCourseTitle(response.title))
     }
 
     componentWillReceiveProps(newProps) {
@@ -49,7 +50,7 @@ export default class CourseEditor extends React.Component {
                         Change Name
                     </Button>
                 </div>
-                <ModuleList courseId={this.state.courseId} />
+                <ModuleList courseId={this.state.courseId} courseTitle={this.state.courseTitle}/>
             </div>
         )
     }
