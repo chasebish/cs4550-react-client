@@ -81,6 +81,10 @@ export default class ModuleList extends React.Component {
 
     renderModules = () => {
 
+        if (!this.state.modules) {
+            return
+        }
+
         let modules = this.state.modules.map((module) => {
             return (
                 <ModuleListItem

@@ -17,7 +17,7 @@ export default class ModuleService {
         return this[_singleton]
     }
 
-    createModule(courseId, moduleId, lesson) {
+    createLesson(courseId, moduleId, lesson) {
         return fetch(COURSE_MODULE_LESSON_API_URL.replace('CID', courseId).replace('MID', moduleId), {
             body: JSON.stringify(lesson),
             headers: {
@@ -27,7 +27,7 @@ export default class ModuleService {
         }).then((response) => response.json())
     }
 
-    deleteModule(lessonId) {
+    deleteLesson(lessonId) {
         return fetch(LESSON_API_URL.replace('LID', lessonId), {
             method: 'DELETE'
         })
