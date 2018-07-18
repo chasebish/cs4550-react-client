@@ -4,38 +4,50 @@ import { Button } from 'react-bootstrap'
 
 import LinkButton from '../components/LinkButton'
 
-const CourseRow = (props) => {
+export default class CourseRow extends React.Component {
 
-    const formatDateTime = (dateTime) => dateTime.substr(0, 19).replace('T', ' ')
+    constructor(props) {
+        super(props)
+    }
 
-    return (
-        <tr>
-            <td>
-                {props.course.title}
-            </td>
-            <td>
-                {formatDateTime(props.course.created)}
-            </td>
-            <td>
-                {formatDateTime(props.course.modified)}
-            </td>
-            <td>
-                <Button bsStyle='danger' onClick={() => { props.delete(props.course.id) }}>
-                    Delete
-                </Button>
-                <LinkButton
-                    title='Select Course'
-                    params={{ courseTitle: props.course.title }}
-                    to={`/course/${props.course.id}`}
-                />
-            </td>
-        </tr>
-    )
+    state = {
+        visible: false
+    }
+
+    formatDateTime = (dateTime) => dateTime.substr(0, 19).replace('T', ' ')
+
+    render() {
+        return (
+            <tr>
+                <td>
+                    {this.props.course.title}
+                </td>
+                <td>
+                    {this.formatDateTime(this.props.course.created)}
+                </td>
+                <td>
+                    {this.formatDateTime(this.props.course.modified)}
+                </td>
+                <td>
+                    <Button bsStyle='info' onClick={() => { this.props.showModal(this.props.course.id) }}>
+                        Edit
+                    </Button>
+                    <Button bsStyle='danger' onClick={() => { this.props.delete(this.props.course.id) }}>
+                        Delete
+                    </Button>
+                    <LinkButton
+                        title='Select Course'
+                        params={{ courseTitle: this.props.course.title }}
+                        to={`/course/${this.props.course.id}`}
+                    />
+                </td>
+            </tr>
+        )
+    }
 }
 
 CourseRow.propTypes = {
     course: PropTypes.object,
-    delete: PropTypes.func
+    delete: PropTypes.func,
+    showModal: PropTypes.func
 }
-
-export default CourseRow

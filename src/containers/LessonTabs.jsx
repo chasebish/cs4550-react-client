@@ -117,7 +117,6 @@ export default class LessonTabs extends React.Component {
     }
 
     render() {
-        console.log(this.state.selectedTab)
         return (
             <Router>
                 <div className="row">
