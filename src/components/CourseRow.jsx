@@ -6,13 +6,6 @@ import LinkButton from '../components/LinkButton'
 
 const CourseRow = (props) => {
 
-    const to = {
-        pathname: `/course/${props.course.id}`,
-        state: {
-            courseTitle: props.course.title,
-        }
-    }
-
     const formatDateTime = (dateTime) => dateTime.substr(0, 19).replace('T', ' ')
 
     return (
@@ -33,7 +26,7 @@ const CourseRow = (props) => {
                 <LinkButton
                     title='Select Course'
                     params={{ courseTitle: props.course.title }}
-                    to={to}
+                    to={`/course/${props.course.id}`}
                 />
             </td>
         </tr>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Tab, Tabs } from 'react-bootstrap'
 
 export default class LessonTabs extends React.Component {
     render() {

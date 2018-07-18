@@ -24,7 +24,7 @@ export default class ModuleService {
                 'Content-Type': 'application/json'
             },
             method: 'POST'
-        }).then((response) => response.json())
+        }).then(response => response.json())
     }
 
     deleteModule(moduleId) {
@@ -33,7 +33,12 @@ export default class ModuleService {
         })
     }
 
+    findModuleById(moduleId) {
+        return fetch(MODULE_API_URL.replace('MID', moduleId))
+            .then(response => response.json())
+    }
+
     findAllModulesForCourse(courseId) {
-        return fetch(COURSE_MODULE_API_URL.replace('CID', courseId)).then((response) => response.json())
+        return fetch(COURSE_MODULE_API_URL.replace('CID', courseId)).then(response => response.json())
     }
 }
