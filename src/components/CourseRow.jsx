@@ -7,7 +7,7 @@ import LinkButton from '../components/LinkButton'
 const CourseRow = (props) => {
 
     const to = {
-        pathname: `/course/${props.course.id}/edit`,
+        pathname: `/course/${props.course.id}`,
         state: {
             courseTitle: props.course.title,
         }

@@ -13,8 +13,8 @@ export default class Whiteboard extends React.Component {
                 <Switch>
                     {/* <Route exact path='/' component={Home} /> */}
                     <Route exact path='/course' component={CourseList} />
-                    <Route path="/course/:courseId/edit" component={CourseEditor} />
-                    <Route path="/course/:courseId/module/:moduleId" component={CourseEditor} />
+                    <Route path="/course/:courseId/" component={CourseEditor} />
+                    {/* <Route path="/course/:courseId/module/:moduleId" component={CourseEditor} /> */}
                 </Switch>
             </div>
         )
