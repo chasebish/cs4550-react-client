@@ -27,6 +27,9 @@ export default class ModuleEditor extends React.Component {
     componentWillReceiveProps(newProps) {
         this.setCourseId(newProps.match.params.courseId)
         this.setModuleId(newProps.match.params.moduleId)
+        if (newProps.match.params.moduleId !== this.state.moduleId) {
+            this.setModuleTitle(newProps.match.params.moduleId)
+        }
     }
 
     setCourseId = (courseId) => {

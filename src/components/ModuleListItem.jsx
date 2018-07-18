@@ -4,37 +4,32 @@ import { Button, ListGroupItem } from 'react-bootstrap'
 
 import LinkButton from './LinkButton'
 
-import '../../node_modules/bootstrap/dist/css/bootstrap.css'
+import './components.css'
 
 export default class ModuleListItem extends React.Component {
 
     render() {
         return (
-            <div>
-                <ListGroupItem>
-                    <div className="row justify-content-between">
-                        <div>
+            <ListGroupItem>
+                <div className="buttonContainer">
+                    <span className="pull-right">
+                        <Button
+                            bsStyle='danger'
+                            bsSize='sm'
+                            onClick={() => this.props.delete(this.props.module.id)}>
+                            Delete
+                        </Button>
+                        <LinkButton
+                            bsSize='sm'
+                            to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
                             {this.props.module.title}
-                        </div>
-                        <div>
-                            <Button
-                                bsStyle='danger'
-                                bsSize='sm'
-                                onClick={() => this.props.delete(this.props.module.id)}>
-                                Delete
-                            </Button>
-                            <LinkButton
-                                bsSize='sm'
-                                to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
-                                {this.props.module.title}
-                            </LinkButton>
-                        </div>
-                    </div>
-                </ListGroupItem>
-            </div>
+                        </LinkButton>
+                    </span>
+                    {this.props.module.title}
+                </div>
+            </ListGroupItem>
         )
     }
-
 }
 
 ModuleListItem.propTypes = {

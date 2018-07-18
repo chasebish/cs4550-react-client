@@ -6,10 +6,6 @@ import LinkButton from '../components/LinkButton'
 
 export default class CourseRow extends React.Component {
 
-    constructor(props) {
-        super(props)
-    }
-
     state = {
         visible: false
     }

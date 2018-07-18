@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Grid, Row } from 'react-bootstrap'
+import { Grid } from 'react-bootstrap'
 
 import CourseService from '../services/CourseService'
 import ModuleList from './ModuleList'
