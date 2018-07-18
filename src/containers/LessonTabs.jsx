@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Button } from 'react-bootstrap'
-import { Tab, Tabs } from 'react-bootstrap-tabs'
 
 import CourseService from '../services/CourseService'
 import LessonService from '../services/LessonService'
@@ -31,11 +30,16 @@ export default class LessonTabs extends React.Component {
         this.setModuleTitle(this.props.moduleTitle)
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.moduleId !== this.props.moduleId) {
+            this.findAllLessonsForModule(this.props.courseId, this.props.moduleId)
+        }
+    }
+
     componentWillReceiveProps(newProps) {
         this.setCourseId(newProps.courseId)
         this.setModuleId(newProps.moduleId)
         this.setModuleTitle(newProps.moduleTitle)
-        this.findAllLessonsForModule(newProps.courseId, newProps.moduleId)
     }
 
     setCourseId = () => {
@@ -90,15 +94,18 @@ export default class LessonTabs extends React.Component {
             return
         }
 
-        // let lessons = this.state.lessons.map((lesson) => {
-        //     return <Tab tabClassName='nav' key={lesson.id} title={lesson.title} />
-        // })
+        let lessons = this.state.lessons.map((lesson) => {
+            return (
+                <li key={lesson.title} className="nav-item">
+                    <a className="nav-link" onClick={this.potate}>{lesson.title}</a>
+                </li>
+            )
+        })
 
         return (
-            <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
-                <Tab label="Tab1">Tab 1 content</Tab>
-                <Tab label="Tab2">Tab 2 content</Tab>
-            </Tabs>
+            <ul className="nav nav-tabs">
+                {lessons}
+            </ul>
         )
 
 

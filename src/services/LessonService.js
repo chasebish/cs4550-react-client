@@ -2,8 +2,8 @@
 
 let _singleton = Symbol()
 
-const COURSE_MODULE_LESSON_API_URL = 'http://localhost:8080/api/course/CID/module/MID/lesson'
-const LESSON_API_URL = 'http://localhost:8080/api/lesson/LID'
+const COURSE_MODULE_LESSON_API_URL = 'https://whiteboard-server-chasebish.herokuapp.com/api/course/CID/module/MID/lesson'
+const LESSON_API_URL = 'https://whiteboard-server-chasebish.herokuapp.com/api/lesson/LID'
 // const COURSE_API_URL = 'https://whiteboard-server-chasebish.herokuapp.com/api/course/CID/module'
 
 export default class ModuleService {
