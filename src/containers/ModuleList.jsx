@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Button, ListGroup } from 'react-bootstrap'
+import { Route } from 'react-router-dom'
+import { Button, Col, ListGroup } from 'react-bootstrap'
 
 import ModuleEditor from './ModuleEditor'
 import ModuleListItem from '../components/ModuleListItem'
@@ -104,20 +104,20 @@ export default class ModuleList extends React.Component {
 
     render() {
         return (
-            <Router>
-                <div className="row">
-                    <div className='col-4'>
+            <div>
+                <Col sm={4}>
+                    <div>
                         <h4>Module List for courseId: {this.state.courseId}</h4>
                         <input value={this.state.module.title} onChange={this.setModuleTitle} className="col form-control" />
                         <Button bsStyle='primary' onClick={this.createModule} className='col'>Create</Button>
                         {this.renderModules()}
                     </div>
-                    <div className='col-8'>
-                        <Route path="/course/:courseId/module/:moduleId"
-                            component={ModuleEditor} />
-                    </div>
-                </div>
-            </Router>
+                </Col>
+                <Col sm={8}>
+                    <Route path="/course/:courseId/module/:moduleId"
+                        component={ModuleEditor} />
+                </Col>
+            </div>
         )
     }
 

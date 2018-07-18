@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 const LinkButton = (props) => {
-
+    console.log(props.to)
     return (
         <Link to={props.to}>
             <Button bsSize={props.bsSize ? props.bsSize : null} bsStyle='primary'>
