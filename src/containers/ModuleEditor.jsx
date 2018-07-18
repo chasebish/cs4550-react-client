@@ -27,7 +27,6 @@ export default class ModuleEditor extends React.Component {
     componentWillReceiveProps(newProps) {
         this.setCourseId(newProps.match.params.courseId)
         this.setModuleId(newProps.match.params.moduleId)
-        this.setModuleTitle(newProps.match.params.moduleId)
     }
 
     setCourseId = (courseId) => {
@@ -47,7 +46,6 @@ export default class ModuleEditor extends React.Component {
 
         return (
             <div>
-                <h1>Module Editor</h1>
                 <div className='row'>
                     <h3>Module {this.state.moduleTitle}</h3>
                     <Button
