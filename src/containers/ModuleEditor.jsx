@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Button } from 'react-bootstrap'
 
 import ModuleService from '../services/ModuleService'
+import LessonTabs from './LessonTabs'
 
 export default class ModuleEditor extends React.Component {
 
@@ -20,13 +21,13 @@ export default class ModuleEditor extends React.Component {
     componentDidMount() {
         this.setCourseId(this.props.match.params.courseId)
         this.setModuleId(this.props.match.params.moduleId)
-        this.moduleService.findModuleById(this.props.match.params.moduleId)
-            .then(response => this.setState({ moduleTitle: response.title}))
+        this.setModuleTitle(this.props.match.params.moduleId)
     }
 
     componentWillReceiveProps(newProps) {
         this.setCourseId(newProps.match.params.courseId)
         this.setModuleId(newProps.match.params.moduleId)
+        this.setModuleTitle(newProps.match.params.moduleId)
     }
 
     setCourseId = (courseId) => {
@@ -37,7 +38,13 @@ export default class ModuleEditor extends React.Component {
         this.setState({ moduleId: moduleId })
     }
 
+    setModuleTitle = (moduleId) => {
+        this.moduleService.findModuleById(moduleId)
+            .then(response => this.setState({ moduleTitle: response.title }))
+    }
+
     render() {
+
         return (
             <div>
                 <h1>Module Editor</h1>
@@ -49,6 +56,7 @@ export default class ModuleEditor extends React.Component {
                         Change Name
                     </Button>
                 </div>
+                <LessonTabs courseId={this.state.courseId} moduleId={this.state.moduleId} moduleTitle={this.state.moduleTitle} />
             </div>
         )
     }
