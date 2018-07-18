@@ -3,7 +3,7 @@ import React from 'react'
 import CourseRow from '../components/CourseRow'
 import CourseService from '../services/CourseService'
 
-import { Col, Grid, Row } from 'react-bootstrap'
+import { Col, Grid, Table, Row } from 'react-bootstrap'
 
 import './containers.css'
 
@@ -87,21 +87,19 @@ export default class CourseList extends React.Component {
                         </div>
                     </Col>
                 </Row>
-                <div className='table-responsive'>
-                    <table className='table'>
-                        <thead>
-                            <tr>
-                                <th>Course Name</th>
-                                <th>Date Created</th>
-                                <th>Date Modified</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.renderCourseRows()}
-                        </tbody>
-                    </table>
-                </div>
+                <Table responsive bordered hover>
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Date Created</th>
+                            <th>Date Modified</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.renderCourseRows()}
+                    </tbody>
+                </Table>
             </Grid>
         )
     }
