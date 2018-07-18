@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Button } from 'react-bootstrap'
 
 import ModuleList from './ModuleList'
 
@@ -40,8 +41,14 @@ export default class CourseEditor extends React.Component {
     render() {
         return (
             <div>
-                <h3>Course {this.state.courseTitle}
-                </h3>
+                <div className='row'>
+                    <h3>Course {this.state.courseTitle}</h3>
+                    <Button
+                        bsStyle='info'
+                        bsSize='sm'>
+                        Change Name
+                    </Button>
+                </div>
                 <ModuleList courseId={this.state.courseId} />
             </div>
         )
