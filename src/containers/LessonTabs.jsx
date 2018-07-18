@@ -21,7 +21,8 @@ export default class LessonTabs extends React.Component {
         lessons: [],
         lesson: {
             title: ''
-        }
+        },
+        selectedTab: ''
     }
 
     componentDidMount() {
@@ -88,6 +89,10 @@ export default class LessonTabs extends React.Component {
         })
     }
 
+    setSelected = (event) => {
+        console.log(event)
+    }
+
     renderLessons = () => {
 
         if (!this.state.lessons) {
@@ -97,7 +102,7 @@ export default class LessonTabs extends React.Component {
         let lessons = this.state.lessons.map((lesson) => {
             return (
                 <li key={lesson.title} className="nav-item">
-                    <a className="nav-link" onClick={this.potate}>{lesson.title}</a>
+                    <a className="nav-link" onClick={this.setSelected}>{lesson.title}</a>
                 </li>
             )
         })

@@ -10,26 +10,28 @@ export default class ModuleListItem extends React.Component {
 
     render() {
         return (
-            <ListGroupItem>
-                <div className="row justify-content-between">
-                    <div>
-                        {this.props.module.title}
-                    </div>
-                    <div>
-                        <Button
-                            bsStyle='danger'
-                            bsSize='sm'
-                            onClick={() => this.props.delete(this.props.module.id)}>
-                            Delete
-                        </Button>
-                        <LinkButton
-                            bsSize='sm'
-                            to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
+            <div>
+                <ListGroupItem>
+                    <div className="row justify-content-between">
+                        <div>
                             {this.props.module.title}
-                        </LinkButton>
+                        </div>
+                        <div>
+                            <Button
+                                bsStyle='danger'
+                                bsSize='sm'
+                                onClick={() => this.props.delete(this.props.module.id)}>
+                                Delete
+                            </Button>
+                            <LinkButton
+                                bsSize='sm'
+                                to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
+                                {this.props.module.title}
+                            </LinkButton>
+                        </div>
                     </div>
-                </div>
-            </ListGroupItem>
+                </ListGroupItem>
+            </div>
         )
     }
 
