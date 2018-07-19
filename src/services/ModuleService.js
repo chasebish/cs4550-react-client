@@ -4,7 +4,6 @@ let _singleton = Symbol()
 
 const COURSE_MODULE_API_URL = 'https://whiteboard-server-chasebish.herokuapp.com/api/course/CID/module'
 const MODULE_API_URL = 'https://whiteboard-server-chasebish.herokuapp.com/api/module/MID'
-// const COURSE_API_URL = 'https://whiteboard-server-chasebish.herokuapp.com/api/course/CID/module'
 
 export default class ModuleService {
     constructor(singletonToken) {
@@ -50,5 +49,10 @@ export default class ModuleService {
 
     findAllModulesForCourse(courseId) {
         return fetch(COURSE_MODULE_API_URL.replace('CID', courseId)).then(response => response.json())
+    }
+
+    findAllModules() {
+        return fetch('https://whiteboard-server-chasebish.herokuapp.com/api/module/')
+            .then(response => response.json())
     }
 }
