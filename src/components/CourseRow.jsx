@@ -12,7 +12,7 @@ export default class CourseRow extends React.Component {
         visible: false
     }
 
-    formatDateTime = (dateTime) => dateTime.substr(0, 19).replace('T', ' ')
+    formatDateTime = (dateTime) => new Date(dateTime).toLocaleString()
 
     render() {
         return (
