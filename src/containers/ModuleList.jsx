@@ -38,14 +38,12 @@ export default class ModuleList extends React.Component {
     }
 
     createModule = () => {
+
+        const courseObj = {
+            modified: new Date()
+        }
+
         this.moduleService.createModule(this.state.courseId, this.state.module).then(() => {
-
-            const date = new Date()
-
-            const courseObj = {
-                modified: date
-            }
-
             this.setState({
                 module: {
                     title: ''
@@ -57,7 +55,13 @@ export default class ModuleList extends React.Component {
     }
 
     deleteModule = (moduleId) => {
+
+        const courseObj = {
+            modified: new Date()
+        }
+
         this.moduleService.deleteModule(moduleId).then(() => {
+            this.courseService.updateCourse(this.state.courseId, courseObj)
             this.findAllModulesForCourse(this.state.courseId)
         })
     }
@@ -87,7 +91,7 @@ export default class ModuleList extends React.Component {
     }
 
     renderModules = () => {
-        
+
         if (this.state.modules.length === 0) {
             return
         }

@@ -72,15 +72,13 @@ export default class LessonTabs extends React.Component {
     }
 
     createLesson = () => {
+
+        const courseObj = {
+            modified: new Date()
+        }
+
         this.lessonService.createLesson(this.state.courseId, this.state.moduleId, this.state.lesson)
             .then(() => {
-
-                const modified = new Date()
-
-                const courseObj = {
-                    modified: modified
-                }
-
                 this.setState({ lesson: { title: '' } })
                 this.courseService.updateCourse(this.state.courseId, courseObj)
                 this.findAllLessonsForModule(this.state.courseId, this.state.moduleId)
