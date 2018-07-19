@@ -10,3 +10,11 @@
 .buttonLeft {
     margin-left: 5px;
 }
+
+.selectedModule {
+    background-color: rgb(210, 231, 255, .25);
+}
+
+.defaultModule {
+    background-color: white;
+}

@@ -24,7 +24,8 @@ export default class ModuleList extends React.Component {
         module: {
             title: ''
         },
-        modules: []
+        modules: [],
+        selectedModule: null
     }
 
     componentDidMount() {
@@ -61,6 +62,10 @@ export default class ModuleList extends React.Component {
         })
     }
 
+    selectModule = (moduleId) => {
+        this.setState({ selectedModule: moduleId })
+    }
+
     setCourseId = (courseId) => {
         this.setState({ courseId: courseId })
     }
@@ -93,7 +98,9 @@ export default class ModuleList extends React.Component {
                     key={module.id}
                     module={module}
                     courseId={this.state.courseId}
-                    delete={this.deleteModule} />
+                    delete={this.deleteModule}
+                    selectModule={this.selectModule}
+                    selectedModule={this.state.selectedModule} />
             )
         })
 

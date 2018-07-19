@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap'
 const LinkButton = (props) => {
     return (
         <Link to={props.to}>
-            <Button bsSize={props.bsSize ? props.bsSize : null} bsStyle='primary'>
+            <Button onClick={props.onClick} bsSize={props.bsSize ? props.bsSize : null} bsStyle='primary'>
                 {props.title ? props.title : 'Select'}
             </Button>
         </Link>
@@ -16,7 +16,8 @@ const LinkButton = (props) => {
 LinkButton.propTypes = {
     bsSize: PropTypes.string,
     title: PropTypes.string,
-    to: PropTypes.any
+    to: PropTypes.any,
+    onClick: PropTypes.func
 }
 
 export default LinkButton
