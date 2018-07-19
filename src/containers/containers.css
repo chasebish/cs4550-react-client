@@ -64,3 +64,7 @@ body {
 #buttonRow {
     margin-bottom: 15px;
 }
+
+.table-responsive {
+    overflow-y: visible !important;
+  }

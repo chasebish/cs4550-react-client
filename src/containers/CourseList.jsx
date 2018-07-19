@@ -162,7 +162,7 @@ export default class CourseList extends React.Component {
                             </div>
                         </Col>
                     </Row>
-                    <Table responsive bordered hover>
+                    <Table bordered hover className='table-responsive'>
                         <thead>
                             <tr>
                                 <th>Course Name</th>

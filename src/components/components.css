@@ -18,3 +18,19 @@
 .defaultModule {
     background-color: white;
 }
+
+.dropdownBtn-chase {
+    width: 160px;
+}
+
+.dropdown-chase {
+    left: 50%;
+    right: auto;
+    text-align: center;
+    transform: translate(-50%, 0);
+}
+
+.courseBtn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
