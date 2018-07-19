@@ -8,14 +8,16 @@ export default class Home extends React.Component {
 
     render() {
         return (
-            <Grid>
-                <div className='text-center'>
+            <Grid id='buttonContainer'>
+                <h1>Assignment 2</h1>
+                <h4>Chase Bishop</h4>
+                <div id='navBtns' className='text-center'>
                     <Button
                         href='https://whiteboard-server-chasebish.herokuapp.com/index.html'
                         className='homeButton'
                         bsStyle='info'
                         bsSize='large'>
-                        User
+                        User Portal
                     </Button>
                     <Link to='/course'>
                         <Button
