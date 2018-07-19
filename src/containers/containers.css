@@ -38,3 +38,12 @@ body {
     margin-top: -10px;
     margin-left: 10px;
 }
+
+.homeButton {
+    width: 180px;
+    margin: 10px;
+}
+
+.homeButtons {
+    background-color: purple;
+}
