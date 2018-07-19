@@ -91,7 +91,7 @@ export default class ModuleEditor extends React.Component {
         return (
             <div>
                 <div className='row'>
-                    <h2 className='moduleHeader'>Module {this.state.moduleTitle}</h2>
+                    <h2 className='moduleHeader'>Module: {this.state.moduleTitle}</h2>
                     <Button onClick={this.showModal} bsStyle='info' id='editModuleButton'>
                         Edit Module
                     </Button>

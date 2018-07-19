@@ -137,7 +137,7 @@ export default class CourseList extends React.Component {
             <div>
                 <Grid fluid={true}>
                     <h2>Course List</h2>
-                    <Row>
+                    <Row id="buttonRow">
                         <Col md={6} lg={3}>
                             <h5>Course Name</h5>
                             <input id="titleFld" placeholder="CS0000" value={this.state.newCourse.title} onChange={this.titleChanged} className="form-control" />
@@ -157,7 +157,7 @@ export default class CourseList extends React.Component {
                             </div>
                         </Col>
                     </Row>
-                    <Table responsive bordered hover id='courseTable'>
+                    <Table responsive bordered hover>
                         <thead>
                             <tr>
                                 <th>Course Name</th>

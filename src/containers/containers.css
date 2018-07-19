@@ -6,10 +6,6 @@ body {
     margin: 10px;
 }
 
-#courseTable {
-    margin-top: 15px;
-}
-
 .minusRight {
     margin-right: -15px;
 }
@@ -63,4 +59,8 @@ body {
 
 #navBtns {
     padding-top: 20px
+}
+
+#buttonRow {
+    margin-bottom: 15px;
 }

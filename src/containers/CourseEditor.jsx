@@ -42,7 +42,7 @@ export default class CourseEditor extends React.Component {
     render() {
         return (
             <Grid fluid={true}>
-                <h1>Course {this.state.courseTitle}</h1>
+                <h1>Course: {this.state.courseTitle}</h1>
                 <ModuleList courseId={this.state.courseId} courseTitle={this.state.courseTitle} />
             </Grid>
         )
