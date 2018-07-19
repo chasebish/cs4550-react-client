@@ -33,6 +33,11 @@ export default class ModuleService {
         })
     }
 
+    findLessonById(lessonId) {
+        return fetch(LESSON_API_URL.replace('LID', lessonId))
+            .then(response => response.json())
+    }
+
     findAllLessonsForModule(courseId, moduleId) {
         return fetch(COURSE_MODULE_LESSON_API_URL.replace('CID', courseId).replace('MID', moduleId)).then((response) => response.json())
     }
