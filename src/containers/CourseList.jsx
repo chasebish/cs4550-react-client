@@ -17,12 +17,14 @@ export default class CourseList extends React.Component {
     state = {
         courses: [],
         newCourse: {
-            title: ''
+            title: '',
+            owner: ''
         },
         selectedCourse: null,
         selectedCourseTitle: '',
         showModal: false,
-        updatingCourse: ''
+        updatingCourse: '',
+        updatingOwner: '',
     }
 
     componentDidMount() {
@@ -36,12 +38,26 @@ export default class CourseList extends React.Component {
             })
     }
 
+    ownerChanged = (event) => {
+        this.setState({
+            newCourse: {
+                title: this.state.newCourse.title,
+                owner: event.target.value
+            }
+        })
+    }
+
     titleChanged = (event) => {
         this.setState({
             newCourse: {
+                owner: this.state.newCourse.owner,
                 title: event.target.value
             }
         })
+    }
+
+    updatingOwnerChanged = (event) => {
+        this.setState({ updatingOwner: event.target.value })
     }
 
     updatingCourseChanged = (event) => {
@@ -51,7 +67,13 @@ export default class CourseList extends React.Component {
     showModal = (courseId) => {
         this.setState({ selectedCourse: courseId, showModal: true })
         this.courseService.findCourseById(courseId)
-            .then(response => this.setState({ selectedCourseTitle: response.title, updatingCourse: response.title }))
+            .then(response =>
+                this.setState({
+                    selectedCourseTitle: response.title,
+                    updatingCourse: response.title,
+                    updatingOwner: response.owner
+                })
+            )
     }
 
     hideModal = () => {
@@ -64,6 +86,7 @@ export default class CourseList extends React.Component {
 
         const courseObj = {
             title: this.state.updatingCourse,
+            owner: this.state.updatingOwner,
             modified: date
         }
 
@@ -85,6 +108,7 @@ export default class CourseList extends React.Component {
 
         const courseObj = {
             title: this.state.newCourse.title,
+            owner: this.state.newCourse.owner,
             created: date,
             modified: date
         }
@@ -93,7 +117,8 @@ export default class CourseList extends React.Component {
             .then(() => {
                 this.setState({
                     newCourse: {
-                        title: ''
+                        title: '',
+                        owner: ''
                     }
                 })
                 this.findAllCourses()
@@ -113,11 +138,21 @@ export default class CourseList extends React.Component {
                 <Grid fluid={true}>
                     <h2>Course List</h2>
                     <Row>
-                        <Col sm={9}>
+                        <Col md={6} lg={3}>
+                            <h5>Course Name</h5>
+                            <input id="titleFld" placeholder="CS0000" value={this.state.newCourse.title} onChange={this.titleChanged} className="form-control" />
+                        </Col>
+                        <Col md={6} lg={4}>
+                            <h5>Course Owner</h5>
                             <div className="input-group">
-                                <input id="titleFld" placeholder="CS0000" value={this.state.newCourse.title} onChange={this.titleChanged} className="form-control" />
+                                <input id="ownerFld" placeholder="Jose Annunziato" value={this.state.newCourse.owner} onChange={this.ownerChanged} className="form-control" />
                                 <span className='input-group-btn'>
-                                    <button onClick={this.createCourse} className="btn btn-primary">Add Course</button>
+                                    <Button
+                                        disabled={this.state.newCourse.title === ''}
+                                        onClick={this.createCourse}
+                                        bsStyle='primary'>
+                                        Add Course
+                                    </Button>
                                 </span>
                             </div>
                         </Col>
@@ -128,6 +163,7 @@ export default class CourseList extends React.Component {
                                 <th>Course Name</th>
                                 <th>Date Created</th>
                                 <th>Date Modified</th>
+                                <th>Owner</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -148,9 +184,15 @@ export default class CourseList extends React.Component {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                        <h5>Course Name</h5>
                         <input
                             value={this.state.updatingCourse}
                             onChange={this.updatingCourseChanged}
+                            className="form-control" />
+                        <h5>Owner Name</h5>
+                        <input
+                            value={this.state.updatingOwner}
+                            onChange={this.updatingOwnerChanged}
                             className="form-control" />
                     </Modal.Body>
                     <Modal.Footer>

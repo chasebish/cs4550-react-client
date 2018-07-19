@@ -27,6 +27,9 @@ export default class CourseRow extends React.Component {
                     {this.formatDateTime(this.props.course.modified)}
                 </td>
                 <td>
+                    {this.props.course.owner}
+                </td>
+                <td>
                     <div>
                         <Button className='buttonLeft buttonRight' bsStyle='info' onClick={() => { this.props.showModal(this.props.course.id) }}>
                             Edit
