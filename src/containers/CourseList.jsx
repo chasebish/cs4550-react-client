@@ -202,7 +202,12 @@ export default class CourseList extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.hideModal}>Close</Button>
-                        <Button onClick={this.updateCourse} bsStyle="primary">Save changes</Button>
+                        <Button
+                            disabled={this.state.updatingCourse === ''}
+                            onClick={this.updateCourse}
+                            bsStyle="primary">
+                            Save changes
+                        </Button>
                     </Modal.Footer>
                 </Modal>
             </div>

@@ -104,7 +104,12 @@ export default class LesosnContent extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.hideModal}>Close</Button>
-                        <Button onClick={this.updateLesson} bsStyle="primary">Save changes</Button>
+                        <Button
+                            disabled={this.state.newTitle === ''}
+                            onClick={this.updateLesson}
+                            bsStyle="primary">
+                            Save changes
+                        </Button>
                     </Modal.Footer>
                 </Modal>
 

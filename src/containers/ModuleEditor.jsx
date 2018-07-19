@@ -119,7 +119,12 @@ export default class ModuleEditor extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.hideModal}>Close</Button>
-                        <Button onClick={this.updateModule} bsStyle="primary">Save changes</Button>
+                        <Button
+                            disabled={this.state.updatingModuleTitle === ''}
+                            onClick={this.updateModule}
+                            bsStyle="primary">
+                            Save changes
+                        </Button>
                     </Modal.Footer>
                 </Modal>
             </div>

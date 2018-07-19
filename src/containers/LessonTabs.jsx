@@ -135,9 +135,16 @@ export default class LessonTabs extends React.Component {
                 <div className="row">
                     <div className='col-4'>
                         <div className='input-group'>
-                            <input value={this.state.lesson.title} onChange={this.setLessonTitle} className="col form-control" />
+                            <input
+                                value={this.state.lesson.title}
+                                onChange={this.setLessonTitle}
+                                className="col form-control" />
                             <span className='input-group-btn'>
-                                <Button bsStyle='primary' onClick={this.createLesson} className='col'>Create</Button>
+                                <Button
+                                    disabled={this.state.lesson.title === ''}
+                                    bsStyle='primary'
+                                    onClick={this.createLesson}
+                                    className='col'>Create</Button>
                             </span>
                         </div>
                         <div className='modulePadding'>
