@@ -1,7 +1,7 @@
 
 
 body {
-    background-color: rgb(182, 182, 182, .15)
+    background-color: rgb(200, 200, 200, .2)
 }
 
 .chaseTitleInput {
@@ -30,4 +30,13 @@ body {
 
 .lessonContent {
     padding: 15px;
+}
+
+.moduleHeader {
+    display: inline-block;
+}
+
+#editModuleButton {
+    margin-top: -10px;
+    margin-left: 10px;
 }

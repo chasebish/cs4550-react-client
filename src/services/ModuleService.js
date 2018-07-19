@@ -33,6 +33,16 @@ export default class ModuleService {
         })
     }
 
+    updateModule(moduleId, module) {
+        return fetch(MODULE_API_URL.replace('MID', moduleId), {
+            method: 'PUT',
+            body: JSON.stringify(module),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json())
+    }
+
     findModuleById(moduleId) {
         return fetch(MODULE_API_URL.replace('MID', moduleId))
             .then(response => response.json())

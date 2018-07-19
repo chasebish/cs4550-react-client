@@ -120,8 +120,9 @@ export default class ModuleList extends React.Component {
                     </div>
                 </Col>
                 <Col md={7} lg={9} className='moduleCol'>
-                    <Route path="/course/:courseId/module/:moduleId"
-                        component={ModuleEditor} />
+                    <Route
+                        path="/course/:courseId/module/:moduleId"
+                        render={(match) => <ModuleEditor {...match} findAllModulesForCourse={this.findAllModulesForCourse}/>} />
                 </Col>
             </div>
         )

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { Button, ListGroupItem } from 'react-bootstrap'
 
 import LinkButton from './LinkButton'
@@ -13,13 +14,15 @@ export default class ModuleListItem extends React.Component {
             <ListGroupItem>
                 <div className="buttonContainer">
                     <span className="pull-right">
-                        <Button
-                            bsStyle='danger'
-                            bsSize='sm'
-                            className='buttonSpace'
-                            onClick={() => this.props.delete(this.props.module.id)}>
-                            Delete
-                        </Button>
+                        <Link to={`/course/${this.props.courseId}`}>
+                            <Button
+                                bsStyle='danger'
+                                bsSize='sm'
+                                className='buttonSpace'
+                                onClick={() => this.props.delete(this.props.module.id)}>
+                                Delete
+                            </Button>
+                        </Link>
                         <LinkButton
                             bsSize='sm'
                             to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
