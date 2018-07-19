@@ -4,6 +4,8 @@ import { Button } from 'react-bootstrap'
 
 import LinkButton from '../components/LinkButton'
 
+import './components.css'
+
 export default class CourseRow extends React.Component {
 
     state = {
@@ -25,17 +27,21 @@ export default class CourseRow extends React.Component {
                     {this.formatDateTime(this.props.course.modified)}
                 </td>
                 <td>
-                    <Button bsStyle='info' onClick={() => { this.props.showModal(this.props.course.id) }}>
-                        Edit
-                    </Button>
-                    <Button bsStyle='danger' onClick={() => { this.props.delete(this.props.course.id) }}>
-                        Delete
-                    </Button>
-                    <LinkButton
-                        title='Select Course'
-                        params={{ courseTitle: this.props.course.title }}
-                        to={`/course/${this.props.course.id}`}
-                    />
+                    <div>
+                        <Button bsStyle='info' onClick={() => { this.props.showModal(this.props.course.id) }}>
+                            Edit
+                        </Button>
+                        &nbsp;
+                        <Button bsStyle='danger' onClick={() => { this.props.delete(this.props.course.id) }}>
+                            Delete
+                        </Button>
+                        &nbsp;
+                        <LinkButton
+                            title='Select Course'
+                            params={{ courseTitle: this.props.course.title }}
+                            to={`/course/${this.props.course.id}`}
+                        />
+                    </div>
                 </td>
             </tr>
         )

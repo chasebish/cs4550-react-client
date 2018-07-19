@@ -1,3 +1,33 @@
+
+
+body {
+    background-color: rgb(182, 182, 182, .15)
+}
+
 .chaseTitleInput {
     margin: 10px;
+}
+
+#courseTable {
+    margin-top: 15px;
+}
+
+.minusRight {
+    margin-right: -15px;
+}
+
+.minusLeft {
+    margin-left: -15px;
+}
+
+.moduleCol {
+    margin-right: 15px;
+}
+
+.modulePadding {
+    padding-top: 15px;
+}
+
+.lessonContent {
+    padding: 15px;
 }

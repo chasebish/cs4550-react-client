@@ -122,7 +122,7 @@ export default class CourseList extends React.Component {
                             </div>
                         </Col>
                     </Row>
-                    <Table responsive bordered hover>
+                    <Table responsive bordered hover id='courseTable'>
                         <thead>
                             <tr>
                                 <th>Course Name</th>

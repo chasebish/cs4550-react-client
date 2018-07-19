@@ -6,6 +6,8 @@ import { Button, Tab, Tabs } from 'react-bootstrap'
 import CourseService from '../services/CourseService'
 import LessonService from '../services/LessonService'
 
+import './containers.css'
+
 export default class LessonTabs extends React.Component {
 
     constructor(props) {
@@ -102,7 +104,9 @@ export default class LessonTabs extends React.Component {
         let lessons = this.state.lessons.map((lesson) => {
             return (
                 <Tab key={lesson.id} eventKey={lesson.id} title={lesson.title}>
-                    {lesson.title}
+                    <div className='lessonContent'>
+                        {lesson.title}
+                    </div>
                 </Tab>
             )
         })
@@ -121,10 +125,15 @@ export default class LessonTabs extends React.Component {
             <Router>
                 <div className="row">
                     <div className='col-4'>
-                        <h4>Module List for courseId: {this.state.courseId}</h4>
-                        <input value={this.state.lesson.title} onChange={this.setLessonTitle} className="col form-control" />
-                        <Button bsStyle='primary' onClick={this.createLesson} className='col'>Create</Button>
-                        {this.renderLessons()}
+                        <div className='input-group'>
+                            <input value={this.state.lesson.title} onChange={this.setLessonTitle} className="col form-control" />
+                            <span className='input-group-btn'>
+                                <Button bsStyle='primary' onClick={this.createLesson} className='col'>Create</Button>
+                            </span>
+                        </div>
+                        <div className='modulePadding'>
+                            {this.renderLessons()}
+                        </div>
                     </div>
                 </div>
             </Router>

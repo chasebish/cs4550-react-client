@@ -5,6 +5,8 @@ import { Button } from 'react-bootstrap'
 import ModuleService from '../services/ModuleService'
 import LessonTabs from './LessonTabs'
 
+import './containers.css'
+
 export default class ModuleEditor extends React.Component {
 
     constructor(props) {
@@ -50,14 +52,12 @@ export default class ModuleEditor extends React.Component {
         return (
             <div>
                 <div className='row'>
-                    <h3>Module {this.state.moduleTitle}</h3>
-                    <Button
-                        bsStyle='info'
-                        bsSize='sm'>
-                        Change Name
-                    </Button>
+                    <h2>Module {this.state.moduleTitle}</h2>
                 </div>
-                <LessonTabs courseId={this.state.courseId} moduleId={this.state.moduleId} moduleTitle={this.state.moduleTitle} />
+                <LessonTabs
+                    courseId={this.state.courseId}
+                    moduleId={this.state.moduleId}
+                    moduleTitle={this.state.moduleTitle} />
             </div>
         )
     }

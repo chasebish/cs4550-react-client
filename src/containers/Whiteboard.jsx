@@ -1,17 +1,23 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { Grid } from 'react-bootstrap'
+import { Grid, PageHeader } from 'react-bootstrap'
 
 import ModuleEditor from './ModuleEditor'
 import CourseEditor from './CourseEditor'
 import CourseList from './CourseList'
+
+import './containers.css'
 
 export default class Whiteboard extends React.Component {
 
     render() {
         return (
             <Grid fluid={true}>
-                <h1>Whiteboard</h1>
+                <header className='whiteboard'>
+                    <PageHeader>
+                        Whiteboard
+                    </PageHeader>
+                </header>
                 <Switch>
                     {/* <Route exact path='/' component={Home} /> */}
                     <Route exact path='/course' component={CourseList} />

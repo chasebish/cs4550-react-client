@@ -9,6 +9,8 @@ import ModuleListItem from '../components/ModuleListItem'
 import CourseService from '../services/CourseService'
 import ModuleService from '../services/ModuleService'
 
+import './containers.css'
+
 export default class ModuleList extends React.Component {
 
     constructor(props) {
@@ -96,7 +98,7 @@ export default class ModuleList extends React.Component {
         })
 
         return (
-            <ListGroup>
+            <ListGroup className='modulePadding'>
                 {modules}
             </ListGroup>
         )
@@ -105,10 +107,9 @@ export default class ModuleList extends React.Component {
     render() {
         return (
             <div>
-                <Col md={4}>
+                <Col md={5} lg={3} className='minusLeft'>
                     <div>
-                        <h4>Module List for courseId: {this.state.courseId}</h4>
-
+                        <h2>Modules</h2>
                         <div className="input-group">
                             <input value={this.state.module.title} onChange={this.setModuleTitle} className="col form-control" />
                             <span className='input-group-btn'>
@@ -118,7 +119,7 @@ export default class ModuleList extends React.Component {
                         {this.renderModules()}
                     </div>
                 </Col>
-                <Col sm={8}>
+                <Col md={7} lg={9} className='moduleCol'>
                     <Route path="/course/:courseId/module/:moduleId"
                         component={ModuleEditor} />
                 </Col>

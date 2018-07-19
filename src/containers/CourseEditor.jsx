@@ -43,11 +43,6 @@ export default class CourseEditor extends React.Component {
         return (
             <Grid fluid={true}>
                 <h1>Course {this.state.courseTitle}</h1>
-                {/* <Button
-                    bsStyle='info'
-                    bsSize='sm'>
-                    Change Name
-                </Button> */}
                 <ModuleList courseId={this.state.courseId} courseTitle={this.state.courseTitle} />
             </Grid>
         )
