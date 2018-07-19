@@ -87,8 +87,8 @@ export default class ModuleList extends React.Component {
     }
 
     renderModules = () => {
-
-        if (!this.state.modules) {
+        
+        if (this.state.modules.length === 0) {
             return
         }
 

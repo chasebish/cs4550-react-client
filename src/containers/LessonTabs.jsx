@@ -102,7 +102,7 @@ export default class LessonTabs extends React.Component {
 
     renderLessons = () => {
 
-        if (!this.state.lessons) {
+        if (this.state.lessons.length === 0) {
             return
         }
 

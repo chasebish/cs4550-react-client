@@ -126,6 +126,11 @@ export default class CourseList extends React.Component {
     }
 
     renderCourseRows = () => {
+
+        if (this.state.courses.length === 0) {
+            return
+        }
+
         let rows = this.state.courses.map((course) => {
             return <CourseRow course={course} key={course.id} showModal={this.showModal} delete={this.deleteCourse} />
         })
