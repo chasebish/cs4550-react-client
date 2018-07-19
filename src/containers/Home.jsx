@@ -9,7 +9,6 @@ export default class Home extends React.Component {
     render() {
         return (
             <Grid>
-
                 <div className='text-center'>
                     <Button
                         href='https://whiteboard-server-chasebish.herokuapp.com/index.html'
@@ -18,7 +17,6 @@ export default class Home extends React.Component {
                         bsSize='large'>
                         User
                     </Button>
-
                     <Link to='/course'>
                         <Button
                             className='homeButton'
