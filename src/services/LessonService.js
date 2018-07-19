@@ -33,6 +33,21 @@ export default class ModuleService {
         })
     }
 
+    updateLesson(lessonId, lesson) {
+        return fetch(LESSON_API_URL.replace('LID', lessonId), {
+            method: 'PUT',
+            body: JSON.stringify(lesson),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json())
+    }
+
+    findLessonById(lessonId) {
+        return fetch(LESSON_API_URL.replace('LID', lessonId))
+            .then(response => response.json())
+    }
+
     findAllLessonsForModule(courseId, moduleId) {
         return fetch(COURSE_MODULE_LESSON_API_URL.replace('CID', courseId).replace('MID', moduleId)).then((response) => response.json())
     }

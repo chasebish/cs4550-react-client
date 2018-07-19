@@ -5,6 +5,7 @@ import { Button, Tab, Tabs } from 'react-bootstrap'
 
 import CourseService from '../services/CourseService'
 import LessonService from '../services/LessonService'
+import LessonContent from '../components/LessonContent'
 
 import './containers.css'
 
@@ -43,6 +44,10 @@ export default class LessonTabs extends React.Component {
         this.setCourseId(newProps.courseId)
         this.setModuleId(newProps.moduleId)
         this.setModuleTitle(newProps.moduleTitle)
+    }
+
+    resetSelectedTab = () => {
+        this.setState({ selectedTab: undefined })
     }
 
     setCourseId = () => {
@@ -105,7 +110,13 @@ export default class LessonTabs extends React.Component {
             return (
                 <Tab key={lesson.id} eventKey={lesson.id} title={lesson.title}>
                     <div className='lessonContent'>
-                        {lesson.title}
+                        <LessonContent
+                            courseId={this.state.courseId}
+                            moduleId={this.state.moduleId}
+                            lessonId={lesson.id.toString()}
+                            lessonTitle={lesson.title}
+                            findAllLessons={this.findAllLessonsForModule}
+                            resetSelectedTab={this.resetSelectedTab} />
                     </div>
                 </Tab>
             )
