@@ -28,14 +28,12 @@ export default class CourseRow extends React.Component {
                 </td>
                 <td>
                     <div>
-                        <Button bsStyle='info' onClick={() => { this.props.showModal(this.props.course.id) }}>
+                        <Button className='buttonLeft buttonRight' bsStyle='info' onClick={() => { this.props.showModal(this.props.course.id) }}>
                             Edit
                         </Button>
-                        &nbsp;
-                        <Button bsStyle='danger' onClick={() => { this.props.delete(this.props.course.id) }}>
+                        <Button className='buttonRight' bsStyle='danger' onClick={() => { this.props.delete(this.props.course.id) }}>
                             Delete
                         </Button>
-                        &nbsp;
                         <LinkButton
                             title='Select Course'
                             params={{ courseTitle: this.props.course.title }}

@@ -3,6 +3,10 @@
     align-items: center;
 }
 
-.buttonSpace {
+.buttonRight {
     margin-right: 10px;
+}
+
+.buttonLeft {
+    margin-left: 5px;
 }

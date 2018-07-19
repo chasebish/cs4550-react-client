@@ -18,7 +18,7 @@ export default class ModuleListItem extends React.Component {
                             <Button
                                 bsStyle='danger'
                                 bsSize='sm'
-                                className='buttonSpace'
+                                className='buttonRight'
                                 onClick={() => this.props.delete(this.props.module.id)}>
                                 Delete
                             </Button>
