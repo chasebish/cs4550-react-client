@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Modal } from 'react-bootstrap'
 
+import TopicTabs from '../containers/TopicTabs'
+
 import CourseService from '../services/CourseService'
 import LessonService from '../services/LessonService'
 
@@ -82,6 +84,13 @@ export default class LesosnContent extends React.Component {
 
             <div>
                 <h4>Lesson Content: {this.state.lessonTitle}</h4>
+                <br />
+                <h5>Lessons</h5>
+                <TopicTabs
+                    courseId={this.state.courseId.toString()}
+                    moduleId={this.state.moduleId.toString()}
+                    lessonId={this.state.lessonId.toString()} />
+                <br />
                 <Button bsSize='sm' bsStyle='danger' onClick={this.deleteLesson} className='buttonRight'>Delete Lesson</Button>
                 <Button bsSize='sm' bsStyle='info' onClick={this.showModal}>Edit Lesson</Button>
 
