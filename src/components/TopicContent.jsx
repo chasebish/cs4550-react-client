@@ -52,8 +52,6 @@ export default class TopicContent extends React.Component {
             modified: new Date()
         }
 
-        console.log(this.state.topicId)
-
         this.topicService.deleteTopic(this.state.topicId)
             .then(() => {
                 this.props.findAllTopics(this.state.courseId, this.state.moduleId, this.state.lessonId)
