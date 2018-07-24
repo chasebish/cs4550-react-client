@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography'
 
 import { Button, Col, Row } from 'react-bootstrap'
 
+import TopicContent from '../components/TopicContent'
+
 import TopicService from '../services/TopicService'
 import CourseService from '../services/CourseService'
 
@@ -66,23 +68,29 @@ class ScrollableTabsButtonAuto extends React.Component {
     setLessonId = lessonId => this.setState({ lessonId })
     setTopics = topics => this.setState({ topics })
 
+    topicTitleChanged = (event) => {
+        this.setState({ newTopicTitle: event.target.value })
+    }
+
     createTopic = () => {
         const courseObj = {
             modified: new Date()
         }
 
         const topicObj = {
-            title: 'TEST TOPIC'
+            title: this.state.newTopicTitle
         }
 
         this.topicService.createTopic(this.state.courseId, this.state.moduleId, this.state.lessonId, topicObj)
             .then(() => {
-                this.setState({ newTopic: '' })
+                this.setState({ newTopicTitle: '' })
                 this.courseService.updateCourse(this.state.courseId, courseObj)
+                this.findAllTopicsForLesson(this.state.courseId, this.state.moduleId, this.state.lessonId)
             })
     }
 
     findAllTopicsForLesson = (courseId, moduleId, lessonId) => {
+        console.log('helloworld')
         this.topicService.findAllTopicsForLesson(courseId, moduleId, lessonId)
             .then(topics => this.setTopics(topics))
     }
@@ -103,8 +111,37 @@ class ScrollableTabsButtonAuto extends React.Component {
                 <Tab key={topic.id} label={topic.title} />
             )
         })
-
         return topics
+    }
+
+    renderTopicContent() {
+
+        const { value } = this.state
+
+        if (this.state.topics.length === 0) {
+            return
+        }
+
+        let counter = -1
+
+        let topicContent = this.state.topics.map((topic) => {
+            counter++
+            return (
+                <div key={topic.id}>
+                    {value === counter &&
+                    <TopicContent
+                        courseId={this.state.courseId}
+                        moduleId={this.state.moduleId}
+                        lessonId={this.state.lessonId}
+                        topicId={topic.id.toString()}
+                        topicTitle={topic.title}
+                        findAllTopics={this.findAllTopicsForLesson}
+                    />
+                    }
+                </div>
+            )
+        })
+        return topicContent
 
     }
 
@@ -117,10 +154,10 @@ class ScrollableTabsButtonAuto extends React.Component {
                 <Row>
                     <Col lg={6}>
                         <div className="input-group">
-                            <input id="ownerFld" placeholder="Jose Annunziato" value={this.state.newTopic} /*onChange={this.ownerChanged}*/ className="form-control" />
+                            <input placeholder="New Topic" value={this.state.newTopicTitle} onChange={this.topicTitleChanged} className="form-control" />
                             <span className='input-group-btn'>
                                 <Button
-                                    // disabled={this.state.newCourse.title === ''}
+                                    disabled={this.state.newTopicTitle === ''}
                                     onClick={this.createTopic}
                                     bsStyle='primary'>
                                     Add Topic
@@ -129,7 +166,7 @@ class ScrollableTabsButtonAuto extends React.Component {
                         </div>
                     </Col>
                 </Row>
-                <h5>Lessons</h5>
+                <h5>Topics</h5>
                 <div className={classes.root}>
                     <AppBar position="static" color="default">
                         <Tabs
@@ -143,6 +180,7 @@ class ScrollableTabsButtonAuto extends React.Component {
                             {this.renderTopics()}
                         </Tabs>
                     </AppBar>
+                    {this.renderTopicContent()}
                     {/* {value === 0 && <TabContainer>Item One</TabContainer>}
                     {value === 1 && <TabContainer>Item Two</TabContainer>}
                     {value === 2 && <TabContainer>Item Three</TabContainer>}
