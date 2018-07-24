@@ -81,15 +81,12 @@ export default class LesosnContent extends React.Component {
     render() {
 
         return (
-
             <div>
                 <h4>Lesson Content: {this.state.lessonTitle}</h4>
-                <br />
-                <h5>Lessons</h5>
                 <TopicTabs
-                    courseId={this.state.courseId.toString()}
-                    moduleId={this.state.moduleId.toString()}
-                    lessonId={this.state.lessonId.toString()} />
+                    courseId={this.props.courseId}
+                    moduleId={this.props.moduleId}
+                    lessonId={this.props.lessonId} />
                 <br />
                 <Button bsSize='sm' bsStyle='danger' onClick={this.deleteLesson} className='buttonRight'>Delete Lesson</Button>
                 <Button bsSize='sm' bsStyle='info' onClick={this.showModal}>Edit Lesson</Button>
