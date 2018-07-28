@@ -92,7 +92,6 @@ class ScrollableTabsButtonAuto extends React.Component {
     }
 
     findAllTopicsForLesson = (courseId, moduleId, lessonId) => {
-        console.log('helloworld')
         this.topicService.findAllTopicsForLesson(courseId, moduleId, lessonId)
             .then(topics => this.setTopics(topics))
     }
