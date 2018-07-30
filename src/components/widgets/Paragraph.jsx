@@ -7,7 +7,7 @@ const Paragraph = ({ widget, updateWidget }) => {
 
     return (
         <div>
-            <h3>Paragraph</h3>
+            <h3>Paragraph - {widget.title}</h3>
             <label htmlFor='paragraph'>List Text</label>
             <textarea
                 id='paragraph'

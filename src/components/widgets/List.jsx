@@ -8,7 +8,7 @@ const List = ({ widget, updateWidget }) => {
 
     return (
         <div>
-            <h3>List Widget</h3>
+            <h3>List Widget - {widget.title}</h3>
             <label htmlFor='list'>List Text</label>
             <textarea
                 id='list'

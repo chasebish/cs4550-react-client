@@ -7,7 +7,7 @@ const Link = ({ widget, updateWidget }) => {
 
     return (
         <div>
-            <h3>Link</h3>
+            <h3>Link - {widget.title}</h3>
             <label htmlFor='link'>List Text</label>
             <input
                 id='link'

@@ -3,12 +3,11 @@ import PropTypes from 'prop-types'
 
 const Heading = ({ widget, updateWidget }) => {
 
-    let text
-    let size
+    let text, size
 
     return (
         <div>
-            <h3>Heading</h3>
+            <h3>Heading - {widget.title}</h3>
             <label htmlFor='text'>Heading Text</label>
             <input
                 onChange={() => {

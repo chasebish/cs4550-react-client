@@ -3,8 +3,9 @@ let initialState = {
     widgets: [
         { title: 'Paragraph 1', id: 1, type: 'PARAGRAPH' },
         { title: 'Link 1', id: 2, type: 'LINK' },
+        { title: 'Image 1', id: 3, type: 'IMAGE', src: 'https://i.imgur.com/ThWoXl7.jpg' },
         { title: 'Heading 1', id: 4, type: 'HEADING' },
-        { title: 'List 1', id: 5, type: 'LIST', ordered: false }
+        { title: 'List 1', id: 5, type: 'LIST', ordered: false, listItems: '' }
     ]
 }
 

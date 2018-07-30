@@ -7,14 +7,16 @@ import Heading from './Heading'
 import List from './List'
 import Paragraph from './Paragraph'
 import Link from './Link'
+import Image from './Image'
+
+import './widgets.css'
 
 const WidgetComponent = ({ widget, deleteWidget, updateWidget }) => {
 
     return (
         <li className='list-group-item'>
-            {widget.title} ({widget.id}) - {widget.type}
             <Button
-                className='pull-right'
+                className='pull-right deleteWidgetButton'
                 bsStyle='danger'
                 onClick={() => deleteWidget(widget.id)}>
                 Delete
@@ -24,6 +26,7 @@ const WidgetComponent = ({ widget, deleteWidget, updateWidget }) => {
                 {widget.type === 'LIST' && <List widget={widget} updateWidget={updateWidget} />}
                 {widget.type === 'PARAGRAPH' && <Paragraph widget={widget} updateWidget={updateWidget} />}
                 {widget.type === 'LINK' && <Link widget={widget} updateWidget={updateWidget} />}
+                {widget.type === 'IMAGE' && <Image widget={widget} updateWidget={updateWidget} />}
             </div>
         </li>
     )
