@@ -5,8 +5,7 @@ import { Button, Modal } from 'react-bootstrap'
 import CourseService from '../services/CourseService'
 import TopicService from '../services/TopicService'
 
-import WidgetList from '../components/WidgetList'
-import AddWidget from './AddWidget'
+import WidgetList from './WidgetList'
 
 import './components.css'
 
@@ -91,8 +90,7 @@ export default class TopicContent extends React.Component {
                 <Button bsSize='sm' bsStyle='danger' onClick={this.deleteTopic} className='buttonRight'>Delete Topic</Button>
                 <Button bsSize='sm' bsStyle='info' onClick={this.showModal}>Edit Topic</Button>
 
-                <WidgetList widgets={[{text: 'Heading'}, {text: 'List'}]} />
-                <AddWidget />
+                <WidgetList />
 
                 <Modal
                     show={this.state.showModal}
