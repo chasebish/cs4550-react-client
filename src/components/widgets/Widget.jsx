@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'react-bootstrap'
+import { Button, ButtonToolbar, Glyphicon } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
 import Heading from './Heading'
@@ -11,16 +11,34 @@ import Image from './Image'
 
 import './widgets.css'
 
-const WidgetComponent = ({ widget, deleteWidget, updateWidget }) => {
+const WidgetComponent = ({ widget, widgets, deleteWidget, updateWidget, moveDown, moveUp }) => {
+
+    console.log(widgets, widgets.length)
 
     return (
         <li className='list-group-item'>
-            <Button
-                className='pull-right deleteWidgetButton'
-                bsStyle='danger'
-                onClick={() => deleteWidget(widget.id)}>
-                Delete
-            </Button>
+            <ButtonToolbar>
+                <Button
+                    className='pull-right deleteWidgetButton'
+                    bsStyle='danger'
+                    onClick={() => deleteWidget(widget.id)}>
+                    Delete
+                </Button>
+                <Button
+                    disabled = {widget.order === widgets.length}
+                    className='pull-right deleteWidgetButton'
+                    bsStyle='warning'
+                    onClick={() => moveDown(widget.id)}>
+                    <Glyphicon glyph="menu-down" />
+                </Button>
+                <Button
+                    disabled={widget.order <= 1}
+                    className='pull-right deleteWidgetButton'
+                    bsStyle='warning'
+                    onClick={() => moveUp(widget.id)}>
+                    <Glyphicon glyph="menu-up" />
+                </Button>
+            </ButtonToolbar>
             <div>
                 {widget.type === 'HEADING' && <Heading widget={widget} updateWidget={updateWidget} />}
                 {widget.type === 'LIST' && <List widget={widget} updateWidget={updateWidget} />}
@@ -33,13 +51,17 @@ const WidgetComponent = ({ widget, deleteWidget, updateWidget }) => {
 }
 
 const mapStateToProps = state => (
-    state
+    {
+        widgets: state.widgets
+    }
 )
 
 const mapDispatchToProps = dispatch => (
     {
         deleteWidget: (widgetId) => dispatch({ type: 'DELETE_WIDGET', widgetId }),
-        updateWidget: (widget) => dispatch({ type:'UPDATE_WIDGET', widget })
+        updateWidget: (widget) => dispatch({ type: 'UPDATE_WIDGET', widget }),
+        moveDown: (widgetId) => dispatch({ type: 'MOVE_DOWN', widgetId}),
+        moveUp: (widgetId) => dispatch({ type: 'MOVE_UP', widgetId})
     }
 )
 
@@ -49,6 +71,9 @@ export default Widget
 
 WidgetComponent.propTypes = {
     widget: PropTypes.object,
+    widgets: PropTypes.array,
     deleteWidget: PropTypes.func,
-    updateWidget: PropTypes.func
+    updateWidget: PropTypes.func,
+    moveDown: PropTypes.func,
+    moveUp: PropTypes.func
 }
