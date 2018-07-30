@@ -1,9 +1,11 @@
 
 let initialState = {
     widgets: [
-        {title: 'Widget 1', id: 1, type: 'WT1'},
-        {title: 'Widget 2', id: 2, type: 'WT2'},
-        {title: 'Widget 3', id: 3, type: 'WT3'}]
+        { title: 'Paragraph 1', id: 1, type: 'PARAGRAPH' },
+        { title: 'Link 1', id: 2, type: 'LINK' },
+        { title: 'Heading 1', id: 4, type: 'HEADING' },
+        { title: 'List 1', id: 5, type: 'LIST', ordered: false }
+    ]
 }
 
 const widgetReducer = (state = initialState, action) => {
@@ -21,6 +23,19 @@ const widgetReducer = (state = initialState, action) => {
                 action.widget
             ]
         }
+    case 'UPDATE_WIDGET':
+        return {
+            widgets: state.widgets.map(widget => {
+                if (widget.id === action.widget.id) {
+                    return action.widget
+                } else {
+                    return widget
+                }
+            })
+        }
+    case 'SAVE_WIDGETS':
+        console.log('save wudgets')
+        return state
     default:
         return state
     }

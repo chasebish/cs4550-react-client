@@ -1,27 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import {Button} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 import Widget from './widgets/Widget'
 
-const WidgetListComponent = ({ widgets, createWidget }) => {
+const WidgetListComponent = ({ widgets, createWidget, saveWidgets }) => {
 
     let widgetTitle
     let widgetType
 
     return (
         <div>
+            <Button
+                onClick={() => saveWidgets()}
+                className='pull-right'
+                bsStyle='success'>Save Widgets</Button>
             <h2>Widget List</h2>
             <ul className='list-group'>
                 <li className='list-group-item'>
-                    <input ref={node => widgetTitle = node} className='form-control'/>
+                    <input ref={node => widgetTitle = node} className='form-control' />
                     <select ref={node => widgetType = node} className='form-control'>
-                        <option value = 'WT1'>Widget Type 1</option>
-                        <option value = 'WT2'>Widget Type 2</option>
-                        <option value = 'WT3'>Widget Type 3</option>
+                        <option value='HEADING'>Heading Widget</option>
+                        <option value='LIST'>List Widget</option>
                     </select>
                     <Button
+                        className='form-control'
                         bsStyle='primary'
                         onClick={() => {
                             let widget = {
@@ -30,7 +34,8 @@ const WidgetListComponent = ({ widgets, createWidget }) => {
                                 type: widgetType.value
                             }
                             widgetTitle.value = ''
-                            createWidget(widget)}
+                            createWidget(widget)
+                        }
                         }>
                         Add Widget
                     </Button>
@@ -43,7 +48,6 @@ const WidgetListComponent = ({ widgets, createWidget }) => {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         widgets: state.widgets
     }
@@ -54,6 +58,9 @@ const mapDispatchToProps = dispatch => {
         createWidget: (widget) => dispatch({
             type: 'CREATE_WIDGET',
             widget
+        }),
+        saveWidgets: () => dispatch({
+            type: 'SAVE_WIDGETS'
         })
     }
 }
@@ -64,5 +71,6 @@ export default WidgetList
 
 WidgetListComponent.propTypes = {
     widgets: PropTypes.array,
-    createWidget: PropTypes.func
+    createWidget: PropTypes.func,
+    saveWidgets: PropTypes.func
 }

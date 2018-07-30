@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
-import WidgetType1 from './WidgetType1'
-import WidgetType2 from './WidgetType2'
-import WidgetType3 from './WidgetType3'
+import Heading from './Heading'
+import List from './List'
+import Paragraph from './Paragraph'
+import Link from './Link'
 
-const WidgetComponent = ({ widget, deleteWidget }) => {
+const WidgetComponent = ({ widget, deleteWidget, updateWidget }) => {
 
     return (
         <li className='list-group-item'>
@@ -19,9 +20,10 @@ const WidgetComponent = ({ widget, deleteWidget }) => {
                 Delete
             </Button>
             <div>
-                {widget.type === 'WT1' && <WidgetType1 />}
-                {widget.type === 'WT2' && <WidgetType2 />}
-                {widget.type === 'WT3' && <WidgetType3 />}
+                {widget.type === 'HEADING' && <Heading widget={widget} updateWidget={updateWidget} />}
+                {widget.type === 'LIST' && <List widget={widget} updateWidget={updateWidget} />}
+                {widget.type === 'PARAGRAPH' && <Paragraph widget={widget} updateWidget={updateWidget} />}
+                {widget.type === 'LINK' && <Link widget={widget} updateWidget={updateWidget} />}
             </div>
         </li>
     )
@@ -33,7 +35,8 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
     {
-        deleteWidget: (widgetId) => dispatch({ type: 'DELETE_WIDGET', widgetId })
+        deleteWidget: (widgetId) => dispatch({ type: 'DELETE_WIDGET', widgetId }),
+        updateWidget: (widget) => dispatch({ type:'UPDATE_WIDGET', widget })
     }
 )
 
@@ -43,5 +46,6 @@ export default Widget
 
 WidgetComponent.propTypes = {
     widget: PropTypes.object,
-    deleteWidget: PropTypes.func
+    deleteWidget: PropTypes.func,
+    updateWidget: PropTypes.func
 }
