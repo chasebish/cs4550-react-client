@@ -3,11 +3,23 @@ import PropTypes from 'prop-types'
 
 const Image = ({ widget, updateWidget }) => {
 
-    let src
+    let src, title
 
     return (
         <div>
             <h3>Image - {widget.title}</h3>
+            <label htmlFor='imageTitle'>Image Title</label>
+            <input
+                id='imageTitle'
+                onChange={() => {
+                    widget.title = title.value
+                    updateWidget(widget)
+                }}
+                ref={node => title = node}
+                value={widget.title}
+                className='form-control'
+                placeholder='Heading Text'>
+            </input>
             <label htmlFor='img'>Image Source</label>
             <input
                 id='img'

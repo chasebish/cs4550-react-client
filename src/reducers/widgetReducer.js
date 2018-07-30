@@ -1,15 +1,16 @@
 
 let initialState = {
     widgets: [
-        { title: 'Paragraph 1', id: 1, type: 'PARAGRAPH' },
-        { title: 'Link 1', id: 2, type: 'LINK' },
-        { title: 'Image 1', id: 3, type: 'IMAGE', src: 'https://i.imgur.com/ThWoXl7.jpg' },
-        { title: 'Heading 1', id: 4, type: 'HEADING' },
-        { title: 'List 1', id: 5, type: 'LIST', ordered: false, listItems: '' }
+        { title: 'Paragraph 1', id: 1, type: 'PARAGRAPH', order: 1 },
+        { title: 'Link 1', id: 2, type: 'LINK', order: 2 },
+        { title: 'Image 1', id: 3, type: 'IMAGE', src: 'https://i.imgur.com/ThWoXl7.jpg', order: 3 },
+        { title: 'Heading 1', id: 4, type: 'HEADING', order: 4 },
+        { title: 'List 1', id: 5, type: 'LIST', ordered: false, listItems: '', order: 5 }
     ]
 }
 
 const widgetReducer = (state = initialState, action) => {
+    console.log(state)
     switch (action.type) {
     case 'DELETE_WIDGET':
         return {
@@ -18,6 +19,7 @@ const widgetReducer = (state = initialState, action) => {
             )
         }
     case 'CREATE_WIDGET':
+        action.widget.order = state.widgets[state.widgets.length - 1].order + 1
         return {
             widgets: [
                 ...state.widgets,

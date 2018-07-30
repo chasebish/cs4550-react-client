@@ -3,12 +3,23 @@ import PropTypes from 'prop-types'
 
 const List = ({ widget, updateWidget }) => {
 
-    let text
-    let order
+    let text, order, title
 
     return (
         <div>
-            <h3>List Widget - {widget.title}</h3>
+            <h3>List - {widget.title}</h3>
+            <label htmlFor='listTitle'>List Title</label>
+            <input
+                id='listTitle'
+                onChange={() => {
+                    widget.title = title.value
+                    updateWidget(widget)
+                }}
+                ref={node => title = node}
+                value={widget.title}
+                className='form-control'
+                placeholder='Heading Text'>
+            </input>
             <label htmlFor='list'>List Text</label>
             <textarea
                 id='list'

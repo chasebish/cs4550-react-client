@@ -3,11 +3,23 @@ import PropTypes from 'prop-types'
 
 const Paragraph = ({ widget, updateWidget }) => {
 
-    let text
+    let text, title
 
     return (
         <div>
             <h3>Paragraph - {widget.title}</h3>
+            <label htmlFor='paragraphTitle'>Paragraph Title</label>
+            <input
+                id='paragraphTitle'
+                onChange={() => {
+                    widget.title = title.value
+                    updateWidget(widget)
+                }}
+                ref={node => title = node}
+                value={widget.title}
+                className='form-control'
+                placeholder='Heading Text'>
+            </input>
             <label htmlFor='paragraph'>List Text</label>
             <textarea
                 id='paragraph'

@@ -3,28 +3,42 @@ import PropTypes from 'prop-types'
 
 const Heading = ({ widget, updateWidget }) => {
 
-    let text, size
+    let text, size, title
 
     return (
         <div>
             <h3>Heading - {widget.title}</h3>
-            <label htmlFor='text'>Heading Text</label>
+            <label htmlFor='headingTitle'>Heading Title</label>
             <input
+                id='headingTitle'
+                onChange={() => {
+                    widget.title = title.value
+                    updateWidget(widget)
+                }}
+                ref={node => title = node}
+                value={widget.title}
+                className='form-control'
+                placeholder='Heading Text'>
+            </input>
+            <label htmlFor='headingText'>Heading Text</label>
+            <input
+                id='headingText'
                 onChange={() => {
                     widget.text = text.value
                     updateWidget(widget)
                 }}
                 ref={node => text = node}
-                id='text' className='form-control'
-                placeholder='Heading Text'></input>
-            <label htmlFor='size'>Heading Text</label>
+                className='form-control'
+                placeholder='Heading Text'>
+            </input>
+            <label htmlFor='headingSize'>Heading Size</label>
             <select
+                id='headingSize'
                 onChange={() => {
                     widget.size = size.value
                     updateWidget(widget)
                 }}
                 ref={node => size = node}
-                id='size'
                 className='form-control'>
                 <option value="" disabled>Select your option</option>
                 <option value='1'>Heading 1</option>

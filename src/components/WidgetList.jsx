@@ -22,7 +22,10 @@ const WidgetListComponent = ({ widgets, createWidget, saveWidgets }) => {
                     <input ref={node => widgetTitle = node} className='form-control' />
                     <select ref={node => widgetType = node} className='form-control'>
                         <option value='HEADING'>Heading Widget</option>
+                        <option value='IMAGE'>Image Widget</option>
+                        <option value='LINK'>Link Widget</option>
                         <option value='LIST'>List Widget</option>
+                        <option value='PARAGRAPH'>Paragraph Widget</option>
                     </select>
                     <Button
                         className='form-control'
