@@ -20,7 +20,7 @@ const Link = ({ widget, updateWidget }) => {
                 className='form-control'
                 placeholder='Heading Text'>
             </input>
-            <label htmlFor='link'>List Text</label>
+            <label htmlFor='link'>Link Text</label>
             <input
                 id='link'
                 onChange={() => {

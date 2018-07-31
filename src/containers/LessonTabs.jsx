@@ -136,6 +136,7 @@ export default class LessonTabs extends React.Component {
                     <div className='col-4'>
                         <div className='input-group'>
                             <input
+                                placeholder='Lesson Name'
                                 value={this.state.lesson.title}
                                 onChange={this.setLessonTitle}
                                 className="col form-control" />

@@ -20,7 +20,7 @@ const Paragraph = ({ widget, updateWidget }) => {
                 className='form-control'
                 placeholder='Heading Text'>
             </input>
-            <label htmlFor='paragraph'>List Text</label>
+            <label htmlFor='paragraph'>Paragraph Text</label>
             <textarea
                 id='paragraph'
                 onChange={() => {

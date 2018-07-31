@@ -57,7 +57,12 @@ class ScrollableTabsButtonAuto extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.courseId !== this.state.courseId && newProps.moduleId !== this.state.moduleId && newProps.lessonId !== this.state.lessonId) {
+        // console.log('state:', this.state.courseId, this.state.moduleId, this.state.lessonId)
+        // console.log('props:', this.props.courseId, this.props.moduleId, this.props.lessonId)
+        // console.log('newProps:', newProps.courseId, newProps.moduleId, newProps.lessonId)
+        if ((newProps.courseId !== this.state.courseId || newProps.moduleId !== this.state.moduleId || newProps.lessonId !== this.state.lessonId)
+            && (newProps.courseId && newProps.moduleId && newProps.lessonId)) {
+            console.log('apicall')
             this.findAllTopicsForLesson(newProps.courseId, newProps.moduleId, newProps.lessonId)
         }
         this.setCourseId(newProps.courseId)

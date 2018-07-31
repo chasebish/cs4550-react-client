@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Button } from 'react-bootstrap'
+import { Button, Col, Row } from 'react-bootstrap'
 
 import Widget from './widgets/Widget'
 
@@ -19,16 +19,22 @@ const WidgetListComponent = ({ widgets, createWidget, saveWidgets }) => {
             <h2>Widget List</h2>
             <ul className='list-group'>
                 <li className='list-group-item'>
-                    <input ref={node => widgetTitle = node} className='form-control' />
-                    <select ref={node => widgetType = node} className='form-control'>
-                        <option value='HEADING'>Heading Widget</option>
-                        <option value='IMAGE'>Image Widget</option>
-                        <option value='LINK'>Link Widget</option>
-                        <option value='LIST'>List Widget</option>
-                        <option value='PARAGRAPH'>Paragraph Widget</option>
-                    </select>
+                    <Row>
+                        <Col sm={6}>
+                            <input placeholder='Widget Name' ref={node => widgetTitle = node} className='form-control addWidgetMargin' />
+                        </Col>
+                        <Col sm={6}>
+                            <select ref={node => widgetType = node} className='form-control addWidgetMargin'>
+                                <option value='HEADING'>Heading Widget</option>
+                                <option value='IMAGE'>Image Widget</option>
+                                <option value='LINK'>Link Widget</option>
+                                <option value='LIST'>List Widget</option>
+                                <option value='PARAGRAPH'>Paragraph Widget</option>
+                            </select>
+                        </Col>
+                    </Row>
                     <Button
-                        className='form-control'
+                        className='form-control addWidgetMargin'
                         bsStyle='primary'
                         onClick={() => {
                             let widget = {
@@ -38,8 +44,7 @@ const WidgetListComponent = ({ widgets, createWidget, saveWidgets }) => {
                             }
                             widgetTitle.value = ''
                             createWidget(widget)
-                        }
-                        }>
+                        }}>
                         Add Widget
                     </Button>
                 </li>

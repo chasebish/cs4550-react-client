@@ -123,6 +123,7 @@ export default class ModuleList extends React.Component {
                         <h2>Modules</h2>
                         <div className="input-group">
                             <input
+                                placeholder='Module Name'
                                 value={this.state.module.title}
                                 onChange={this.setModuleTitle}
                                 className="col form-control" />
