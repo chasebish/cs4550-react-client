@@ -85,8 +85,7 @@ export default class TopicContent extends React.Component {
 
         return (
             <div className='topicBtns'>
-                {/* <h4>Lesson Content: {this.state.lessonTitle}</h4> */}
-                <h6>Topic: {this.state.topicTitle}</h6>
+                <h5>Topic: {this.state.topicTitle}</h5>
                 <Button bsSize='sm' bsStyle='danger' onClick={this.deleteTopic} className='buttonRight'>Delete Topic</Button>
                 <Button bsSize='sm' bsStyle='info' onClick={this.showModal}>Edit Topic</Button>
 

@@ -57,12 +57,12 @@ class ScrollableTabsButtonAuto extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
+        if (newProps.courseId !== this.state.courseId && newProps.moduleId !== this.state.moduleId && newProps.lessonId !== this.state.lessonId) {
+            this.findAllTopicsForLesson(newProps.courseId, newProps.moduleId, newProps.lessonId)
+        }
         this.setCourseId(newProps.courseId)
         this.setModuleId(newProps.moduleId)
         this.setLessonId(newProps.lessonId)
-        if (this.props.courseId.length > 0 && this.props.moduleId > 0 && this.props.lessonId > 0) {
-            this.findAllTopicsForLesson(this.props.courseId, this.props.moduleId, this.props.lessonId)
-        }
     }
 
     setCourseId = courseId => this.setState({ courseId })
@@ -130,14 +130,14 @@ class ScrollableTabsButtonAuto extends React.Component {
             return (
                 <div key={topic.id}>
                     {value === counter &&
-                    <TopicContent
-                        courseId={this.state.courseId}
-                        moduleId={this.state.moduleId}
-                        lessonId={this.state.lessonId}
-                        topicId={topic.id.toString()}
-                        topicTitle={topic.title}
-                        findAllTopics={this.findAllTopicsForLesson}
-                    />
+                        <TopicContent
+                            courseId={this.state.courseId}
+                            moduleId={this.state.moduleId}
+                            lessonId={this.state.lessonId}
+                            topicId={topic.id.toString()}
+                            topicTitle={topic.title}
+                            findAllTopics={this.findAllTopicsForLesson}
+                        />
                     }
                 </div>
             )
@@ -182,13 +182,6 @@ class ScrollableTabsButtonAuto extends React.Component {
                         </Tabs>
                     </AppBar>
                     {this.renderTopicContent()}
-                    {/* {value === 0 && <TabContainer>Item One</TabContainer>}
-                    {value === 1 && <TabContainer>Item Two</TabContainer>}
-                    {value === 2 && <TabContainer>Item Three</TabContainer>}
-                    {value === 3 && <TabContainer>Item Four</TabContainer>}
-                    {value === 4 && <TabContainer>Item Five</TabContainer>}
-                    {value === 5 && <TabContainer>Item Six</TabContainer>}
-                    {value === 6 && <TabContainer>Item Seven</TabContainer>} */}
                 </div>
             </div>
         )

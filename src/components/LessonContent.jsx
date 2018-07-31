@@ -83,13 +83,12 @@ export default class LesosnContent extends React.Component {
         return (
             <div>
                 <h4>Lesson Content: {this.state.lessonTitle}</h4>
+                <Button bsSize='sm' bsStyle='danger' onClick={this.deleteLesson} className='buttonRight marginBottom'>Delete Lesson</Button>
+                <Button bsSize='sm' bsStyle='info' onClick={this.showModal} className='marginBottom'>Edit Lesson</Button>
                 <TopicTabs
                     courseId={this.props.courseId}
                     moduleId={this.props.moduleId}
                     lessonId={this.props.lessonId} />
-                <br />
-                <Button bsSize='sm' bsStyle='danger' onClick={this.deleteLesson} className='buttonRight'>Delete Lesson</Button>
-                <Button bsSize='sm' bsStyle='info' onClick={this.showModal}>Edit Lesson</Button>
 
                 <Modal
                     show={this.state.showModal}

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, ButtonToolbar, Glyphicon } from 'react-bootstrap'
+import { Button, Glyphicon } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
 import Heading from './Heading'
@@ -13,32 +13,28 @@ import './widgets.css'
 
 const WidgetComponent = ({ widget, widgets, deleteWidget, updateWidget, moveDown, moveUp }) => {
 
-    console.log(widgets, widgets.length)
-
     return (
         <li className='list-group-item'>
-            <ButtonToolbar>
-                <Button
-                    className='pull-right deleteWidgetButton'
-                    bsStyle='danger'
-                    onClick={() => deleteWidget(widget.id)}>
-                    Delete
-                </Button>
-                <Button
-                    disabled = {widget.order === widgets.length}
-                    className='pull-right deleteWidgetButton'
-                    bsStyle='warning'
-                    onClick={() => moveDown(widget.id)}>
-                    <Glyphicon glyph="menu-down" />
-                </Button>
-                <Button
-                    disabled={widget.order <= 1}
-                    className='pull-right deleteWidgetButton'
-                    bsStyle='warning'
-                    onClick={() => moveUp(widget.id)}>
-                    <Glyphicon glyph="menu-up" />
-                </Button>
-            </ButtonToolbar>
+            <Button
+                className='pull-right deleteWidgetButton'
+                bsStyle='danger'
+                onClick={() => deleteWidget(widget.id)}>
+                Delete
+            </Button>
+            <Button
+                disabled={widget.order === widgets.length}
+                className='pull-right deleteWidgetButton middleButton'
+                bsStyle='warning'
+                onClick={() => moveDown(widget, widget.order)}>
+                <Glyphicon glyph="menu-down" />
+            </Button>
+            <Button
+                disabled={widget.order <= 1}
+                className='pull-right deleteWidgetButton'
+                bsStyle='warning'
+                onClick={() => moveUp(widget, widget.order)}>
+                <Glyphicon glyph="menu-up" />
+            </Button>
             <div>
                 {widget.type === 'HEADING' && <Heading widget={widget} updateWidget={updateWidget} />}
                 {widget.type === 'LIST' && <List widget={widget} updateWidget={updateWidget} />}
@@ -60,8 +56,8 @@ const mapDispatchToProps = dispatch => (
     {
         deleteWidget: (widgetId) => dispatch({ type: 'DELETE_WIDGET', widgetId }),
         updateWidget: (widget) => dispatch({ type: 'UPDATE_WIDGET', widget }),
-        moveDown: (widgetId) => dispatch({ type: 'MOVE_DOWN', widgetId}),
-        moveUp: (widgetId) => dispatch({ type: 'MOVE_UP', widgetId})
+        moveDown: (widget, order) => dispatch({ type: 'MOVE_DOWN', widget, order }),
+        moveUp: (widget, order) => dispatch({ type: 'MOVE_UP', widget, order })
     }
 )
 

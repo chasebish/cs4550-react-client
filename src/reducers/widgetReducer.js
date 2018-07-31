@@ -1,16 +1,21 @@
 
 let initialState = {
     widgets: [
-        { title: 'Paragraph 1', id: 1, type: 'PARAGRAPH', order: 1 }
-        // { title: 'Link 1', id: 2, type: 'LINK', order: 2 },
-        // { title: 'Image 1', id: 3, type: 'IMAGE', src: 'https://i.imgur.com/ThWoXl7.jpg', order: 3 },
+        { title: 'Paragraph 1', id: 1, type: 'PARAGRAPH', order: 1 },
+        { title: 'Link 1', id: 2, type: 'LINK', order: 2 },
+        { title: 'Image 1', id: 3, type: 'IMAGE', src: 'https://i.imgur.com/ThWoXl7.jpg', order: 3 }
         // { title: 'Heading 1', id: 4, type: 'HEADING', order: 4 },
         // { title: 'List 1', id: 5, type: 'LIST', ordered: false, listItems: '', order: 5 }
     ]
 }
 
 const widgetReducer = (state = initialState, action) => {
-    console.log(state)
+
+    // eslint-disable-next-line
+    let index, indexUp, indexDown, newState
+
+    console.log(state.widgets)
+
     switch (action.type) {
     case 'DELETE_WIDGET':
         return {
@@ -42,11 +47,43 @@ const widgetReducer = (state = initialState, action) => {
             })
         }
     case 'MOVE_UP':
-        console.log(action.widgetId, 'move_up')
-        return state
+        return {
+            widgets: state.widgets.map((widget) => {
+                let currentOrder = widget.order
+                if (currentOrder === action.order) {
+                    return {
+                        ...widget,
+                        order: action.order - 1
+                    }
+                } else if (currentOrder === action.order - 1) {
+                    return {
+                        ...widget,
+                        order: action.order
+                    }
+                } else {
+                    return widget
+                }
+            })
+        }
     case 'MOVE_DOWN':
-        console.log(action.widgetId, 'move_down')
-        return state
+        return {
+            widgets: state.widgets.map((widget) => {
+                let currentOrder = widget.order
+                if (currentOrder === action.order) {
+                    return {
+                        ...widget,
+                        order: action.order + 1
+                    }
+                } else if (currentOrder === action.order + 1) {
+                    return {
+                        ...widget,
+                        order: action.order
+                    }
+                } else {
+                    return widget
+                }
+            })
+        }
     case 'SAVE_WIDGETS':
         console.log('save wudgets')
         return state

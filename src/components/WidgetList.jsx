@@ -43,8 +43,9 @@ const WidgetListComponent = ({ widgets, createWidget, saveWidgets }) => {
                         Add Widget
                     </Button>
                 </li>
-                {widgets.map((widget, index) =>
-                    <Widget key={index} widget={widget} />)}
+                {widgets
+                    .sort((a, b) => a.order - b.order)
+                    .map((widget, index) => <Widget key={index} widget={widget} />)}
             </ul>
         </div>
     )
