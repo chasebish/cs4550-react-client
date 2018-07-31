@@ -32,7 +32,7 @@ const Image = ({ widget, updateWidget }) => {
                 placeholder='Image Source'
                 value={widget.src}>
             </input>
-            <h4>Preview</h4>
+            <h4>Preview</h4><hr/>
             <img src={widget.src} alt={widget.text} />
         </div>
     )

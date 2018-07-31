@@ -33,6 +33,7 @@ const Heading = ({ widget, updateWidget }) => {
             </input>
             <label htmlFor='headingSize'>Heading Size</label>
             <select
+                defaultValue=''
                 id='headingSize'
                 onChange={() => {
                     widget.size = size.value
@@ -48,7 +49,7 @@ const Heading = ({ widget, updateWidget }) => {
                 <option value='5'>Heading 5</option>
                 <option value='6'>Heading 6</option>
             </select>
-            <h4>Preview</h4>
+            <h4>Preview</h4><hr/>
             {widget.size === '1' && <h1>{widget.text}</h1>}
             {widget.size === '2' && <h2>{widget.text}</h2>}
             {widget.size === '3' && <h3>{widget.text}</h3>}

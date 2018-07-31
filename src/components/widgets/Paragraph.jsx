@@ -31,7 +31,7 @@ const Paragraph = ({ widget, updateWidget }) => {
                 className='form-control'
                 value={widget.text}>
             </textarea>
-            <h4>Preview</h4>
+            <h4>Preview</h4><hr/>
             <p>{widget.text}</p>
         </div>
     )

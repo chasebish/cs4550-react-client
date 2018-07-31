@@ -41,7 +41,7 @@ const List = ({ widget, updateWidget }) => {
                     checked={widget.ordered}
                     type='checkbox'/> Ordered
             </label>
-            <h4>Preview</h4>
+            <h4>Preview</h4><hr/>
             {!widget.ordered &&
                 <ul>
                     {widget.listItems.split('\n').map((item, index) => (

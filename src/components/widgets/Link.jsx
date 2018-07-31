@@ -31,7 +31,7 @@ const Link = ({ widget, updateWidget }) => {
                 className='form-control'
                 placeholder='Link Text'>
             </input>
-            <h4>Preview</h4>
+            <h4>Preview</h4><hr/>
             <a href={widget.text}>{widget.text}</a>
         </div>
     )
