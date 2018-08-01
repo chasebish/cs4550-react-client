@@ -7,8 +7,7 @@ import Widget from './widgets/Widget'
 
 const WidgetListComponent = ({ widgets, createWidget, saveWidgets, topicId }) => {
 
-    let widgetName
-    let widgetType
+    let widgetName, widgetType
 
     return (
         <div>

@@ -3,14 +3,32 @@ import PropTypes from 'prop-types'
 
 const Image = ({ widget, updateWidget }) => {
 
-    let src, name
+    let src, name, widgetType
 
     return (
         <div>
             <h3>Image - {widget.name}</h3>
-            <label htmlFor='imageName'>Image Name</label>
+            <div>
+                <label htmlFor={`changeImage${widget.id}`}>Change Widget:</label>
+                <select
+                    id={`changeImage${widget.id}`}
+                    onChange={() => {
+                        widget.className = widgetType.value
+                        updateWidget(widget)
+                    }}
+                    value={widget.className}
+                    ref={node => widgetType = node}
+                    className='form-control-static changeWidget'>
+                    <option value='HEADING'>Heading Widget</option>
+                    <option value='IMAGE'>Image Widget</option>
+                    <option value='LINK'>Link Widget</option>
+                    <option value='LIST'>List Widget</option>
+                    <option value='PARAGRAPH'>Paragraph Widget</option>
+                </select>
+            </div>
+            <label htmlFor={`imageName${widget.id}`}>Image Name</label>
             <input
-                id='imageName'
+                id={`imageName${widget.id}`}
                 onChange={() => {
                     widget.name = name.value
                     updateWidget(widget)
@@ -20,9 +38,9 @@ const Image = ({ widget, updateWidget }) => {
                 className='form-control'
                 placeholder='Heading Text'>
             </input>
-            <label htmlFor='img'>Image Source</label>
+            <label htmlFor={`img${widget.id}`}>Image Source</label>
             <input
-                id='img'
+                id={`img${widget.id}`}
                 onChange={() => {
                     widget.src = src.value
                     updateWidget(widget)

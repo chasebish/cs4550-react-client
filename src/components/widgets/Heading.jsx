@@ -3,14 +3,32 @@ import PropTypes from 'prop-types'
 
 const Heading = ({ widget, updateWidget }) => {
 
-    let text, size, name
+    let text, size, name, widgetType
 
     return (
         <div>
             <h3>Heading - {widget.name}</h3>
-            <label htmlFor='headingName'>Heading Name</label>
+            <div>
+                <label htmlFor={`changeHeading${widget.id}`}>Change Widget:</label>
+                <select
+                    id={`changeHeading${widget.id}`}
+                    onChange={() => {
+                        widget.className = widgetType.value
+                        updateWidget(widget)
+                    }}
+                    value={widget.className}
+                    ref={node => widgetType = node}
+                    className='form-control-static changeWidget'>
+                    <option value='HEADING'>Heading Widget</option>
+                    <option value='IMAGE'>Image Widget</option>
+                    <option value='LINK'>Link Widget</option>
+                    <option value='LIST'>List Widget</option>
+                    <option value='PARAGRAPH'>Paragraph Widget</option>
+                </select>
+            </div>
+            <label htmlFor={`headingName${widget.id}`}>Heading Name</label>
             <input
-                id='headingName'
+                id={`headingName${widget.id}`}
                 onChange={() => {
                     widget.name = name.value
                     updateWidget(widget)
@@ -20,9 +38,9 @@ const Heading = ({ widget, updateWidget }) => {
                 className='form-control'
                 placeholder='Heading Text'>
             </input>
-            <label htmlFor='headingText'>Heading Text</label>
+            <label htmlFor={`headingText${widget.id}`}>Heading Text</label>
             <input
-                id='headingText'
+                id={`headingText${widget.id}`}
                 onChange={() => {
                     widget.text = text.value
                     updateWidget(widget)
@@ -32,10 +50,10 @@ const Heading = ({ widget, updateWidget }) => {
                 className='form-control'
                 placeholder='Heading Text'>
             </input>
-            <label htmlFor='headingSize'>Heading Size</label>
+            <label htmlFor={`headingSize${widget.id}`}>Heading Size</label>
             <select
+                id={`changeHeading${widget.id}`}
                 value={widget.size}
-                id='headingSize'
                 onChange={() => {
                     widget.size = parseInt(size.value, 8)
                     updateWidget(widget)
@@ -50,7 +68,7 @@ const Heading = ({ widget, updateWidget }) => {
                 <option value='5'>Heading 5</option>
                 <option value='6'>Heading 6</option>
             </select>
-            <h4>Preview</h4><hr/>
+            <h4>Preview</h4><hr />
             {widget.size === 1 && <h1>{widget.text}</h1>}
             {widget.size === 2 && <h2>{widget.text}</h2>}
             {widget.size === 3 && <h3>{widget.text}</h3>}

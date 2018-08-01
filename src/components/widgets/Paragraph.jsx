@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Paragraph = ({ widget, updateWidget }) => {
 
-    let text, name
+    let text, name, widgetType
 
     if (widget.text === undefined || null) {
         widget.text = ''
@@ -12,9 +12,27 @@ const Paragraph = ({ widget, updateWidget }) => {
     return (
         <div>
             <h3>Paragraph - {widget.name}</h3>
-            <label htmlFor='paragraphName'>Paragraph Name</label>
+            <div>
+                <label htmlFor={`changeParagraph${widget.id}`}>Change Widget:</label>
+                <select
+                    id={`changeParagraph${widget.id}`}
+                    onChange={() => {
+                        widget.className = widgetType.value
+                        updateWidget(widget)
+                    }}
+                    value={widget.className}
+                    ref={node => widgetType = node}
+                    className='form-control-static changeWidget'>
+                    <option value='HEADING'>Heading Widget</option>
+                    <option value='IMAGE'>Image Widget</option>
+                    <option value='LINK'>Link Widget</option>
+                    <option value='LIST'>List Widget</option>
+                    <option value='PARAGRAPH'>Paragraph Widget</option>
+                </select>
+            </div>
+            <label htmlFor={`paragraphName${widget.id}`}>Paragraph Name</label>
             <input
-                id='paragraphName'
+                id={`paragraphName${widget.id}`}
                 onChange={() => {
                     widget.name = name.value
                     updateWidget(widget)
@@ -24,9 +42,9 @@ const Paragraph = ({ widget, updateWidget }) => {
                 className='form-control'
                 placeholder='Heading Text'>
             </input>
-            <label htmlFor='paragraph'>Paragraph Text</label>
+            <label htmlFor={`paragraph${widget.id}`}>Paragraph Text</label>
             <textarea
-                id='paragraph'
+                id={`paragraph${widget.id}`}
                 onChange={() => {
                     widget.text = text.value
                     updateWidget(widget)

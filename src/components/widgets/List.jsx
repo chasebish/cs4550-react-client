@@ -3,14 +3,32 @@ import PropTypes from 'prop-types'
 
 const List = ({ widget, updateWidget }) => {
 
-    let text, listType, name
+    let text, listType, name, widgetType
 
     return (
         <div>
             <h3>List - {widget.name}</h3>
-            <label htmlFor='listName'>List Name</label>
+            <div>
+                <label htmlFor={`changeList${widget.id}`}>Change Widget:</label>
+                <select
+                    id={`changeList${widget.id}`}
+                    onChange={() => {
+                        widget.className = widgetType.value
+                        updateWidget(widget)
+                    }}
+                    value={widget.className}
+                    ref={node => widgetType = node}
+                    className='form-control-static changeWidget'>
+                    <option value='HEADING'>Heading Widget</option>
+                    <option value='IMAGE'>Image Widget</option>
+                    <option value='LINK'>Link Widget</option>
+                    <option value='LIST'>List Widget</option>
+                    <option value='PARAGRAPH'>Paragraph Widget</option>
+                </select>
+            </div>
+            <label htmlFor={`listName${widget.id}`}>List Name</label>
             <input
-                id='listName'
+                id={`listName${widget.id}`}
                 onChange={() => {
                     widget.name = name.value
                     updateWidget(widget)
@@ -20,9 +38,9 @@ const List = ({ widget, updateWidget }) => {
                 className='form-control'
                 placeholder='Heading Text'>
             </input>
-            <label htmlFor='list'>List Text</label>
+            <label htmlFor={`list${widget.id}`}>List Text</label>
             <textarea
-                id='list'
+                id={`list${widget.id}`}
                 onChange={() => {
                     widget.listItems = text.value
                     updateWidget(widget)
@@ -31,9 +49,9 @@ const List = ({ widget, updateWidget }) => {
                 className='form-control'
                 value={widget.listItems}>
             </textarea>
-            <label htmlFor='listType'>List Type</label>
+            <label htmlFor={`listType${widget.id}`}>List Type</label>
             <select
-                id='listType'
+                id={`listType${widget.id}`}
                 onChange={() => {
                     widget.listType = listType.value
                     updateWidget(widget)

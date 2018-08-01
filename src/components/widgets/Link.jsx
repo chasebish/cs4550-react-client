@@ -3,14 +3,32 @@ import PropTypes from 'prop-types'
 
 const Link = ({ widget, updateWidget }) => {
 
-    let text, name
+    let text, name, widgetType
 
     return (
         <div>
             <h3>Link - {widget.name}</h3>
-            <label htmlFor='linkName'>Link Name</label>
+            <div>
+                <label htmlFor={`changeLink${widget.id}`}>Change Widget:</label>
+                <select
+                    id={`changeLink${widget.id}`}
+                    onChange={() => {
+                        widget.className = widgetType.value
+                        updateWidget(widget)
+                    }}
+                    value={widget.className}
+                    ref={node => widgetType = node}
+                    className='form-control-static changeWidget'>
+                    <option value='HEADING'>Heading Widget</option>
+                    <option value='IMAGE'>Image Widget</option>
+                    <option value='LINK'>Link Widget</option>
+                    <option value='LIST'>List Widget</option>
+                    <option value='PARAGRAPH'>Paragraph Widget</option>
+                </select>
+            </div>
+            <label htmlFor={`linkName${widget.id}`}>Link Name</label>
             <input
-                id='linkName'
+                id={`linkName${widget.id}`}
                 onChange={() => {
                     widget.name = name.value
                     updateWidget(widget)
@@ -20,9 +38,9 @@ const Link = ({ widget, updateWidget }) => {
                 className='form-control'
                 placeholder='Heading Text'>
             </input>
-            <label htmlFor='link'>Link Text</label>
+            <label htmlFor={`link${widget.id}`}>Link Text</label>
             <input
-                id='link'
+                id={`link${widget.id}`}
                 onChange={() => {
                     widget.text = text.value
                     updateWidget(widget)
