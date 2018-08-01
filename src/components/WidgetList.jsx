@@ -54,11 +54,16 @@ const WidgetListComponent = ({ widgets, createWidget, saveWidgets, togglePreview
                                 alert('Widget name must be unique!')
                                 return
                             } else {
+
+                                let newOrder
+
+                                if (widgets.length <= 0) { newOrder = 1} else { newOrder = widgets[widgets.length - 1].widgetOrder + 1 }
+
                                 let widget = {
                                     name: widgetName.value,
                                     id: new Date().getTime(),
                                     className: widgetType.value,
-                                    widgetOrder: widgets[widgets.length - 1].widgetOrder + 1,
+                                    widgetOrder: newOrder,
                                     editorOpen: true
                                 }
                                 widgetName.value = ''

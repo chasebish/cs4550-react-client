@@ -23,7 +23,6 @@ const widgetReducer = (state = initialState, action) => {
             })
         }
     case 'CREATE_WIDGET':
-        action.widget.widgetOrder = state.widgets[state.widgets.length - 1].widgetOrder + 1
         return {
             ...state,
             widgets: [
