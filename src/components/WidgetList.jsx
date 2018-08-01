@@ -1,3 +1,5 @@
+/* global alert */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -44,15 +46,24 @@ const WidgetListComponent = ({ widgets, createWidget, saveWidgets, togglePreview
                         className='form-control addWidgetMargin'
                         bsStyle='primary'
                         onClick={() => {
-                            let widget = {
-                                name: widgetName.value,
-                                id: new Date().getTime(),
-                                className: widgetType.value,
-                                widgetOrder: widgets[widgets.length - 1].widgetOrder + 1,
-                                editorOpen: true
+
+                            let name = widgetName.value
+                            let arr = widgets.filter((widget) => name === widget.name)
+
+                            if (arr.length >= 1) {
+                                alert('Widget name must be unique!')
+                                return
+                            } else {
+                                let widget = {
+                                    name: widgetName.value,
+                                    id: new Date().getTime(),
+                                    className: widgetType.value,
+                                    widgetOrder: widgets[widgets.length - 1].widgetOrder + 1,
+                                    editorOpen: true
+                                }
+                                widgetName.value = ''
+                                createWidget(widget)
                             }
-                            widgetName.value = ''
-                            createWidget(widget)
                         }}>
                         Add Widget
                     </Button>
