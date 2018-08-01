@@ -27,6 +27,7 @@ const Link = ({ widget, updateWidget }) => {
                     widget.text = text.value
                     updateWidget(widget)
                 }}
+                value={widget.text}
                 ref={node => text = node}
                 className='form-control'
                 placeholder='Link Text'>

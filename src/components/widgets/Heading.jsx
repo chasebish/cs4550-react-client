@@ -27,13 +27,14 @@ const Heading = ({ widget, updateWidget }) => {
                     widget.text = text.value
                     updateWidget(widget)
                 }}
+                value={widget.text}
                 ref={node => text = node}
                 className='form-control'
                 placeholder='Heading Text'>
             </input>
             <label htmlFor='headingSize'>Heading Size</label>
             <select
-                defaultValue=''
+                value={widget.size}
                 id='headingSize'
                 onChange={() => {
                     widget.size = parseInt(size.value, 8)
@@ -41,7 +42,7 @@ const Heading = ({ widget, updateWidget }) => {
                 }}
                 ref={node => size = node}
                 className='form-control'>
-                <option value="" disabled>Select your option</option>
+                <option value={undefined} disabled>Select your option</option>
                 <option value='1'>Heading 1</option>
                 <option value='2'>Heading 2</option>
                 <option value='3'>Heading 3</option>

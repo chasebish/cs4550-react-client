@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const List = ({ widget, updateWidget }) => {
 
-    let text, order, name
+    let text, listType, name
 
     return (
         <div>
@@ -31,25 +31,29 @@ const List = ({ widget, updateWidget }) => {
                 className='form-control'
                 value={widget.listItems}>
             </textarea>
-            <label>
-                <input
-                    onClick={() => {
-                        widget.ordered = order.checked
-                        updateWidget(widget)
-                    }}
-                    ref={node => order = node}
-                    checked={widget.ordered}
-                    type='checkbox'/> Ordered
-            </label>
-            <h4>Preview</h4><hr/>
-            {!widget.ordered &&
+            <label htmlFor='listType'>List Type</label>
+            <select
+                id='listType'
+                onChange={() => {
+                    widget.listType = listType.value
+                    updateWidget(widget)
+                }}
+                value={widget.listType}
+                ref={node => listType = node}
+                className='form-control'>
+                <option value={undefined} disabled>Select your option</option>
+                <option value='ORDERED'>Ordered List</option>
+                <option value='UNORDERED'>Unordered List</option>
+            </select>
+            <h4>Preview</h4><hr />
+            {widget.listType === 'UNORDERED' &&
                 <ul>
                     {widget.listItems.split('\n').map((item, index) => (
                         <li key={index}>{item}</li>
                     ))}
                 </ul>
             }
-            {widget.ordered &&
+            {widget.listType === 'ORDERED' &&
                 <ol>
                     {widget.listItems.split('\n').map((item, index) => (
                         <li key={index}>{item}</li>

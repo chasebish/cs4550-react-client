@@ -5,6 +5,10 @@ const Paragraph = ({ widget, updateWidget }) => {
 
     let text, name
 
+    if (widget.text === undefined || null) {
+        widget.text = ''
+    }
+
     return (
         <div>
             <h3>Paragraph - {widget.name}</h3>

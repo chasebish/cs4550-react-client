@@ -41,7 +41,7 @@ const WidgetListComponent = ({ widgets, createWidget, saveWidgets, topicId }) =>
                                 name: widgetName.value,
                                 id: new Date().getTime(),
                                 className: widgetType.value,
-                                widgetOrder: widgets[widgets.length - 1].order + 1,
+                                widgetOrder: widgets[widgets.length - 1].widgetOrder + 1,
                                 editorOpen: true
                             }
                             widgetName.value = ''
@@ -51,7 +51,7 @@ const WidgetListComponent = ({ widgets, createWidget, saveWidgets, topicId }) =>
                     </Button>
                 </li>
                 {widgets
-                    .sort((a, b) => a.order - b.order)
+                    .sort((a, b) => a.widgetOrder - b.widgetOrder)
                     .map((widget, index) => <Widget key={index} widget={widget} />)}
             </ul>
         </div>

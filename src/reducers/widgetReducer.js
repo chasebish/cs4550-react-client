@@ -1,13 +1,7 @@
 import WidgetService from '../services/WidgetService'
 
 let initialState = {
-    widgets: [
-        { name: 'Paragraph 1', id: 1, className: 'PARAGRAPH', editorOpen: true, widgetOrder: 1 },
-        { name: 'Link 1', id: 2, className: 'LINK', editorOpen: true, widgetOrder: 2 },
-        { name: 'Image 1', id: 3, className: 'IMAGE', src: 'https://i.imgur.com/ThWoXl7.jpg', editorOpen: true, widgetOrder: 3 },
-        { name: 'Heading 1', id: 4, className: 'HEADING', editorOpen: true, widgetOrder: 4 },
-        { name: 'List 1', id: 5, className: 'LIST', ordered: false, listItems: '', editorOpen: true, widgetOrder: 5 }
-    ]
+    widgets: []
 }
 
 const widgetService = WidgetService.instance
@@ -22,12 +16,12 @@ const widgetReducer = (state = initialState, action) => {
             ).map((widget, index) => {
                 return {
                     ...widget,
-                    order: index + 1
+                    widgetOrder: index + 1
                 }
             })
         }
     case 'CREATE_WIDGET':
-        action.widget.order = state.widgets[state.widgets.length - 1].order + 1
+        action.widget.widgetOrder = state.widgets[state.widgets.length - 1].widgetOrder + 1
         return {
             widgets: [
                 ...state.widgets,
@@ -47,16 +41,16 @@ const widgetReducer = (state = initialState, action) => {
     case 'MOVE_UP':
         return {
             widgets: state.widgets.map((widget) => {
-                let currentOrder = widget.order
-                if (currentOrder === action.order) {
+                let currentOrder = widget.widgetOrder
+                if (currentOrder === action.widgetOrder) {
                     return {
                         ...widget,
-                        order: action.order - 1
+                        widgetOrder: action.widgetOrder - 1
                     }
-                } else if (currentOrder === action.order - 1) {
+                } else if (currentOrder === action.widgetOrder - 1) {
                     return {
                         ...widget,
-                        order: action.order
+                        widgetOrder: action.widgetOrder
                     }
                 } else {
                     return widget
@@ -66,16 +60,16 @@ const widgetReducer = (state = initialState, action) => {
     case 'MOVE_DOWN':
         return {
             widgets: state.widgets.map((widget) => {
-                let currentOrder = widget.order
-                if (currentOrder === action.order) {
+                let currentOrder = widget.widgetOrder
+                if (currentOrder === action.widgetOrder) {
                     return {
                         ...widget,
-                        order: action.order + 1
+                        widgetOrder: action.widgetOrder + 1
                     }
-                } else if (currentOrder === action.order + 1) {
+                } else if (currentOrder === action.widgetOrder + 1) {
                     return {
                         ...widget,
-                        order: action.order
+                        widgetOrder: action.widgetOrder
                     }
                 } else {
                     return widget
@@ -83,10 +77,12 @@ const widgetReducer = (state = initialState, action) => {
             })
         }
     case 'SAVE_WIDGETS':
-        console.log('save wudgets')
-        console.log(action.topicId)
         widgetService.saveAllWidgets(action.topicId, state.widgets)
         return state
+    case 'GET_WIDGETS':
+        return {
+            widgets: action.widgets
+        }
     default:
         return state
     }

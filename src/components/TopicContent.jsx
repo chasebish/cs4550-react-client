@@ -1,20 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Modal } from 'react-bootstrap'
+import { connect } from 'react-redux'
 
 import CourseService from '../services/CourseService'
 import TopicService from '../services/TopicService'
+import WidgetService from '../services/WidgetService'
 
 import WidgetList from './WidgetList'
 
 import './components.css'
 
-export default class TopicContent extends React.Component {
+class TopicContentContainer extends React.Component {
 
     constructor(props) {
         super(props)
         this.topicService = TopicService.instance
         this.courseService = CourseService.instance
+        this.widgetService = WidgetService.instance
     }
 
     state = {
@@ -35,7 +38,12 @@ export default class TopicContent extends React.Component {
         this.setTopicId(this.props.topicId)
         this.setTopicTitle(this.props.topicTitle)
         this.setNewTitle(this.props.topicTitle)
+        this.findAllWidgetsForTopic()
     }
+
+    // componentWillReceiveProps(newProps) {
+    //     // this.findAllWidgetsForTopic(newProps.courseId, newProps.moduleId, newProps.lessonId, newProps.topicId)
+    // }
 
     showModal = () => this.setState({ showModal: true })
     hideModal = () => this.setState({ showModal: false })
@@ -47,6 +55,16 @@ export default class TopicContent extends React.Component {
     setTopicId = (topicId) => this.setState({ topicId })
     setTopicTitle = (topicTitle) => this.setState({ topicTitle })
     setNewTitle = (topicTitle) => this.setState({ newTitle: topicTitle })
+    setWidgets = (widgets) => {
+        this.props.setReduxWidgets(widgets)
+    }
+
+    findAllWidgetsForTopic = () => {
+        this.widgetService.findAllWidgetsForTopic(this.props.courseId, this.props.moduleId, this.props.lessonId, this.props.topicId)
+            .then(widgets => {
+                this.setWidgets(widgets)
+            })
+    }
 
     deleteTopic = () => {
 
@@ -129,7 +147,7 @@ export default class TopicContent extends React.Component {
 
 }
 
-TopicContent.propTypes = {
+TopicContentContainer.propTypes = {
     courseId: PropTypes.string,
     moduleId: PropTypes.string,
     lessonId: PropTypes.string,
@@ -137,4 +155,65 @@ TopicContent.propTypes = {
     topicTitle: PropTypes.string,
 
     findAllTopics: PropTypes.func,
+    setReduxWidgets: PropTypes.func
 }
+
+const mapStateToProps = state => {
+    return state
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setReduxWidgets: (widgets) => dispatch({
+            type: 'GET_WIDGETS',
+            widgets
+        })
+    }
+}
+
+const TopicContent = connect(mapStateToProps, mapDispatchToProps)(TopicContentContainer)
+export default TopicContent
+
+// class WidgetListContainerComp extends React.Component {
+
+//     state = {
+//         courseId: '',
+//         moduleId: '',
+//         lessonId: '',
+//         topicId: '',
+
+//         widgets: []
+//     }
+    
+//     componentDidMount() {
+//         this.props.getWidgets()
+//     }
+
+// }
+
+// const WidgetListContainer = connect(mapStateToProps, mapDispatchToProps)(WidgetListContainerComp)
+
+// const mapStateToProps = state => {
+//     return {
+//         widgets: state.widgets
+//     }
+// }
+
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         getWidgets: (courseId, moduleId, lessonId, topicId) => dispatch({
+//             type: 'GET_WIDGETS',
+//             courseId, moduleId, lessonId, topicId
+//         })
+//     }
+// }
+
+// WidgetListContainerComp.propTypes = {
+//     widgets: PropTypes.array,
+//     getWidgets: PropTypes.func,
+
+//     courseId: PropTypes.string,
+//     moduleId: PropTypes.string,
+//     lessonId: PropTypes.string,
+//     topicId: PropTypes.string
+// }

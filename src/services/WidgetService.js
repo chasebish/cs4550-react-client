@@ -57,7 +57,7 @@ export default class WidgetService {
             .replace('CID', courseId)
             .replace('MID', moduleId)
             .replace('LID', lessonId)
-            .replace('WID', topicId)
+            .replace('TID', topicId)
         ).then((response) => response.json())
     }
 
