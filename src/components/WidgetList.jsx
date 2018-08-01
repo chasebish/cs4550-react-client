@@ -5,7 +5,7 @@ import { Button, Col, Row } from 'react-bootstrap'
 
 import Widget from './widgets/Widget'
 
-const WidgetListComponent = ({ widgets, createWidget, saveWidgets, topicId }) => {
+const WidgetListComponent = ({ widgets, createWidget, saveWidgets, togglePreview, topicId }) => {
 
     let widgetName, widgetType
 
@@ -14,7 +14,15 @@ const WidgetListComponent = ({ widgets, createWidget, saveWidgets, topicId }) =>
             <Button
                 onClick={() => saveWidgets(topicId)}
                 className='pull-right'
-                bsStyle='success'>Save Widgets</Button>
+                bsStyle='success'>
+                Save Widgets
+            </Button>
+            <Button
+                onClick={() => togglePreview()}
+                className='pull-right buttonRight'
+                bsStyle='info'>
+                Toggle Preview
+            </Button>
             <h2>Widget List</h2>
             <ul className='list-group'>
                 <li className='list-group-item'>
@@ -72,6 +80,9 @@ const mapDispatchToProps = dispatch => {
         saveWidgets: (topicId) => dispatch({
             type: 'SAVE_WIDGETS',
             topicId
+        }),
+        togglePreview: () => dispatch({
+            type: 'TOGGLE_PREVIEW'
         })
     }
 }
@@ -84,6 +95,7 @@ WidgetListComponent.propTypes = {
     widgets: PropTypes.array,
     createWidget: PropTypes.func,
     saveWidgets: PropTypes.func,
+    togglePreview: PropTypes.func,
     courseId: PropTypes.string,
     moduleId: PropTypes.string,
     lessonId: PropTypes.string,

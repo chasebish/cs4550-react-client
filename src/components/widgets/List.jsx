@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const List = ({ widget, updateWidget }) => {
+const List = ({ preview, widget, updateWidget }) => {
 
     let text, listType, name, widgetType
 
@@ -63,20 +63,24 @@ const List = ({ widget, updateWidget }) => {
                 <option value='ORDERED'>Ordered List</option>
                 <option value='UNORDERED'>Unordered List</option>
             </select>
-            <h4>Preview</h4><hr />
-            {widget.listType === 'UNORDERED' &&
-                <ul>
-                    {widget.listItems.split('\n').map((item, index) => (
-                        <li key={index}>{item}</li>
-                    ))}
-                </ul>
-            }
-            {widget.listType === 'ORDERED' &&
-                <ol>
-                    {widget.listItems.split('\n').map((item, index) => (
-                        <li key={index}>{item}</li>
-                    ))}
-                </ol>
+            {preview &&
+            <div>
+                <h4>Preview</h4><hr />
+                {widget.listType === 'UNORDERED' &&
+                    <ul>
+                        {widget.listItems.split('\n').map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
+                }
+                {widget.listType === 'ORDERED' &&
+                    <ol>
+                        {widget.listItems.split('\n').map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ol>
+                }
+            </div>
             }
         </div>
     )
@@ -86,6 +90,7 @@ const List = ({ widget, updateWidget }) => {
 export default List
 
 List.propTypes = {
+    preview: PropTypes.bool,
     widget: PropTypes.object,
     updateWidget: PropTypes.func
 }

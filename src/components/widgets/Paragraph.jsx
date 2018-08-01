@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Paragraph = ({ widget, updateWidget }) => {
+const Paragraph = ({ preview, widget, updateWidget }) => {
 
     let text, name, widgetType
 
@@ -53,8 +53,12 @@ const Paragraph = ({ widget, updateWidget }) => {
                 className='form-control'
                 value={widget.text}>
             </textarea>
-            <h4>Preview</h4><hr/>
-            <p>{widget.text}</p>
+            {preview &&
+            <div>
+                <h4>Preview</h4><hr/>
+                <p>{widget.text}</p>
+            </div>
+            }
         </div>
     )
 }
@@ -62,6 +66,7 @@ const Paragraph = ({ widget, updateWidget }) => {
 export default Paragraph
 
 Paragraph.propTypes = {
+    preview: PropTypes.bool,
     widget: PropTypes.object,
     updateWidget: PropTypes.func
 }

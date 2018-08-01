@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Link = ({ widget, updateWidget }) => {
+const Link = ({ preview, widget, updateWidget }) => {
 
     let text, name, widgetType
 
@@ -50,8 +50,12 @@ const Link = ({ widget, updateWidget }) => {
                 className='form-control'
                 placeholder='Link Text'>
             </input>
-            <h4>Preview</h4><hr/>
-            <a href={widget.text}>{widget.text}</a>
+            {preview &&
+            <div>
+                <h4>Preview</h4><hr/>
+                <a href={widget.text}>{widget.text}</a>
+            </div>
+            }
         </div>
     )
 }
@@ -59,6 +63,7 @@ const Link = ({ widget, updateWidget }) => {
 export default Link
 
 Link.propTypes = {
+    preview: PropTypes.bool,
     widget: PropTypes.object,
     updateWidget: PropTypes.func
 }

@@ -11,7 +11,7 @@ import Image from './Image'
 
 import './widgets.css'
 
-const WidgetComponent = ({ widget, widgets, deleteWidget, updateWidget, moveDown, moveUp }) => {
+const WidgetComponent = ({ widget, widgets, preview, deleteWidget, updateWidget, moveDown, moveUp }) => {
 
     return (
         <li className='list-group-item'>
@@ -36,11 +36,11 @@ const WidgetComponent = ({ widget, widgets, deleteWidget, updateWidget, moveDown
                 <Glyphicon glyph="menu-up" />
             </Button>
             <div>
-                {widget.className === 'HEADING' && <Heading widget={widget} updateWidget={updateWidget} />}
-                {widget.className === 'LIST' && <List widget={widget} updateWidget={updateWidget} />}
-                {widget.className === 'PARAGRAPH' && <Paragraph widget={widget} updateWidget={updateWidget} />}
-                {widget.className === 'LINK' && <Link widget={widget} updateWidget={updateWidget} />}
-                {widget.className === 'IMAGE' && <Image widget={widget} updateWidget={updateWidget} />}
+                {widget.className === 'HEADING' && <Heading widget={widget} preview={preview} updateWidget={updateWidget} />}
+                {widget.className === 'LIST' && <List widget={widget} preview={preview} updateWidget={updateWidget} />}
+                {widget.className === 'PARAGRAPH' && <Paragraph widget={widget} preview={preview} updateWidget={updateWidget} />}
+                {widget.className === 'LINK' && <Link widget={widget} preview={preview} updateWidget={updateWidget} />}
+                {widget.className === 'IMAGE' && <Image widget={widget} preview={preview} updateWidget={updateWidget} />}
             </div>
         </li>
     )
@@ -48,6 +48,7 @@ const WidgetComponent = ({ widget, widgets, deleteWidget, updateWidget, moveDown
 
 const mapStateToProps = state => (
     {
+        preview: state.preview,
         widgets: state.widgets
     }
 )
@@ -68,6 +69,7 @@ export default Widget
 WidgetComponent.propTypes = {
     widget: PropTypes.object,
     widgets: PropTypes.array,
+    preview: PropTypes.bool,
     deleteWidget: PropTypes.func,
     updateWidget: PropTypes.func,
     moveDown: PropTypes.func,

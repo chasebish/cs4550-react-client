@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Image = ({ widget, updateWidget }) => {
+const Image = ({ preview, widget, updateWidget }) => {
 
     let src, name, widgetType
 
@@ -50,8 +50,12 @@ const Image = ({ widget, updateWidget }) => {
                 placeholder='Image Source'
                 value={widget.src}>
             </input>
-            <h4>Preview</h4><hr/>
-            <img src={widget.src} alt={widget.text} />
+            {preview &&
+            <div>
+                <h4>Preview</h4><hr/>
+                <img src={widget.src} alt={widget.text} />
+            </div>
+            }
         </div>
     )
 }
@@ -59,6 +63,7 @@ const Image = ({ widget, updateWidget }) => {
 export default Image
 
 Image.propTypes = {
+    preview: PropTypes.bool,
     widget: PropTypes.object,
     updateWidget: PropTypes.func
 }

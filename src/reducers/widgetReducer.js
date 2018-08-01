@@ -1,6 +1,7 @@
 import WidgetService from '../services/WidgetService'
 
 let initialState = {
+    preview: true,
     widgets: []
 }
 
@@ -11,6 +12,7 @@ const widgetReducer = (state = initialState, action) => {
     switch (action.type) {
     case 'DELETE_WIDGET':
         return {
+            ...state,
             widgets: state.widgets.filter(
                 widget => widget.id !== action.widgetId
             ).map((widget, index) => {
@@ -23,6 +25,7 @@ const widgetReducer = (state = initialState, action) => {
     case 'CREATE_WIDGET':
         action.widget.widgetOrder = state.widgets[state.widgets.length - 1].widgetOrder + 1
         return {
+            ...state,
             widgets: [
                 ...state.widgets,
                 action.widget
@@ -30,6 +33,7 @@ const widgetReducer = (state = initialState, action) => {
         }
     case 'UPDATE_WIDGET':
         return {
+            ...state,
             widgets: state.widgets.map(widget => {
                 if (widget.id === action.widget.id) {
                     return action.widget
@@ -40,6 +44,7 @@ const widgetReducer = (state = initialState, action) => {
         }
     case 'MOVE_UP':
         return {
+            ...state,
             widgets: state.widgets.map((widget) => {
                 let currentOrder = widget.widgetOrder
                 if (currentOrder === action.widgetOrder) {
@@ -59,6 +64,7 @@ const widgetReducer = (state = initialState, action) => {
         }
     case 'MOVE_DOWN':
         return {
+            ...state,
             widgets: state.widgets.map((widget) => {
                 let currentOrder = widget.widgetOrder
                 if (currentOrder === action.widgetOrder) {
@@ -81,7 +87,13 @@ const widgetReducer = (state = initialState, action) => {
         return state
     case 'GET_WIDGETS':
         return {
+            ...state,
             widgets: action.widgets
+        }
+    case 'TOGGLE_PREVIEW':
+        return {
+            ...state,
+            preview: !state.preview
         }
     default:
         return state
