@@ -3,20 +3,20 @@ import PropTypes from 'prop-types'
 
 const Heading = ({ widget, updateWidget }) => {
 
-    let text, size, title
+    let text, size, name
 
     return (
         <div>
-            <h3>Heading - {widget.title}</h3>
-            <label htmlFor='headingTitle'>Heading Title</label>
+            <h3>Heading - {widget.name}</h3>
+            <label htmlFor='headingName'>Heading Name</label>
             <input
-                id='headingTitle'
+                id='headingName'
                 onChange={() => {
-                    widget.title = title.value
+                    widget.name = name.value
                     updateWidget(widget)
                 }}
-                ref={node => title = node}
-                value={widget.title}
+                ref={node => name = node}
+                value={widget.name}
                 className='form-control'
                 placeholder='Heading Text'>
             </input>
@@ -36,7 +36,7 @@ const Heading = ({ widget, updateWidget }) => {
                 defaultValue=''
                 id='headingSize'
                 onChange={() => {
-                    widget.size = size.value
+                    widget.size = parseInt(size.value, 8)
                     updateWidget(widget)
                 }}
                 ref={node => size = node}
@@ -50,12 +50,12 @@ const Heading = ({ widget, updateWidget }) => {
                 <option value='6'>Heading 6</option>
             </select>
             <h4>Preview</h4><hr/>
-            {widget.size === '1' && <h1>{widget.text}</h1>}
-            {widget.size === '2' && <h2>{widget.text}</h2>}
-            {widget.size === '3' && <h3>{widget.text}</h3>}
-            {widget.size === '4' && <h4>{widget.text}</h4>}
-            {widget.size === '5' && <h5>{widget.text}</h5>}
-            {widget.size === '6' && <h6>{widget.text}</h6>}
+            {widget.size === 1 && <h1>{widget.text}</h1>}
+            {widget.size === 2 && <h2>{widget.text}</h2>}
+            {widget.size === 3 && <h3>{widget.text}</h3>}
+            {widget.size === 4 && <h4>{widget.text}</h4>}
+            {widget.size === 5 && <h5>{widget.text}</h5>}
+            {widget.size === 6 && <h6>{widget.text}</h6>}
         </div>
     )
 }

@@ -3,20 +3,20 @@ import PropTypes from 'prop-types'
 
 const Link = ({ widget, updateWidget }) => {
 
-    let text, title
+    let text, name
 
     return (
         <div>
-            <h3>Link - {widget.title}</h3>
-            <label htmlFor='linkTitle'>Link Title</label>
+            <h3>Link - {widget.name}</h3>
+            <label htmlFor='linkName'>Link Name</label>
             <input
-                id='linkTitle'
+                id='linkName'
                 onChange={() => {
-                    widget.title = title.value
+                    widget.name = name.value
                     updateWidget(widget)
                 }}
-                ref={node => title = node}
-                value={widget.title}
+                ref={node => name = node}
+                value={widget.name}
                 className='form-control'
                 placeholder='Heading Text'>
             </input>

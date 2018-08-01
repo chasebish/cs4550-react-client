@@ -5,15 +5,15 @@ import { Button, Col, Row } from 'react-bootstrap'
 
 import Widget from './widgets/Widget'
 
-const WidgetListComponent = ({ widgets, createWidget, saveWidgets }) => {
+const WidgetListComponent = ({ widgets, createWidget, saveWidgets, topicId }) => {
 
-    let widgetTitle
+    let widgetName
     let widgetType
 
     return (
         <div>
             <Button
-                onClick={() => saveWidgets()}
+                onClick={() => saveWidgets(topicId)}
                 className='pull-right'
                 bsStyle='success'>Save Widgets</Button>
             <h2>Widget List</h2>
@@ -21,7 +21,7 @@ const WidgetListComponent = ({ widgets, createWidget, saveWidgets }) => {
                 <li className='list-group-item'>
                     <Row>
                         <Col sm={6}>
-                            <input placeholder='Widget Name' ref={node => widgetTitle = node} className='form-control addWidgetMargin' />
+                            <input placeholder='Widget Name' ref={node => widgetName = node} className='form-control addWidgetMargin' />
                         </Col>
                         <Col sm={6}>
                             <select ref={node => widgetType = node} className='form-control addWidgetMargin'>
@@ -38,11 +38,13 @@ const WidgetListComponent = ({ widgets, createWidget, saveWidgets }) => {
                         bsStyle='primary'
                         onClick={() => {
                             let widget = {
-                                title: widgetTitle.value,
+                                name: widgetName.value,
                                 id: new Date().getTime(),
-                                type: widgetType.value
+                                className: widgetType.value,
+                                widgetOrder: widgets[widgets.length - 1].order + 1,
+                                editorOpen: true
                             }
-                            widgetTitle.value = ''
+                            widgetName.value = ''
                             createWidget(widget)
                         }}>
                         Add Widget
@@ -68,8 +70,9 @@ const mapDispatchToProps = dispatch => {
             type: 'CREATE_WIDGET',
             widget
         }),
-        saveWidgets: () => dispatch({
-            type: 'SAVE_WIDGETS'
+        saveWidgets: (topicId) => dispatch({
+            type: 'SAVE_WIDGETS',
+            topicId
         })
     }
 }
@@ -81,5 +84,9 @@ export default WidgetList
 WidgetListComponent.propTypes = {
     widgets: PropTypes.array,
     createWidget: PropTypes.func,
-    saveWidgets: PropTypes.func
+    saveWidgets: PropTypes.func,
+    courseId: PropTypes.string,
+    moduleId: PropTypes.string,
+    lessonId: PropTypes.string,
+    topicId: PropTypes.string
 }

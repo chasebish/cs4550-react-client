@@ -1,17 +1,18 @@
+import WidgetService from '../services/WidgetService'
 
 let initialState = {
     widgets: [
-        { title: 'Paragraph 1', id: 1, type: 'PARAGRAPH', order: 1 },
-        { title: 'Link 1', id: 2, type: 'LINK', order: 2 },
-        { title: 'Image 1', id: 3, type: 'IMAGE', src: 'https://i.imgur.com/ThWoXl7.jpg', order: 3 },
-        { title: 'Heading 1', id: 4, type: 'HEADING', order: 4 },
-        { title: 'List 1', id: 5, type: 'LIST', ordered: false, listItems: '', order: 5 }
+        { name: 'Paragraph 1', id: 1, className: 'PARAGRAPH', editorOpen: true, widgetOrder: 1 },
+        { name: 'Link 1', id: 2, className: 'LINK', editorOpen: true, widgetOrder: 2 },
+        { name: 'Image 1', id: 3, className: 'IMAGE', src: 'https://i.imgur.com/ThWoXl7.jpg', editorOpen: true, widgetOrder: 3 },
+        { name: 'Heading 1', id: 4, className: 'HEADING', editorOpen: true, widgetOrder: 4 },
+        { name: 'List 1', id: 5, className: 'LIST', ordered: false, listItems: '', editorOpen: true, widgetOrder: 5 }
     ]
 }
 
-const widgetReducer = (state = initialState, action) => {
+const widgetService = WidgetService.instance
 
-    console.log(state.widgets)
+const widgetReducer = (state = initialState, action) => {
 
     switch (action.type) {
     case 'DELETE_WIDGET':
@@ -83,6 +84,8 @@ const widgetReducer = (state = initialState, action) => {
         }
     case 'SAVE_WIDGETS':
         console.log('save wudgets')
+        console.log(action.topicId)
+        widgetService.saveAllWidgets(action.topicId, state.widgets)
         return state
     default:
         return state

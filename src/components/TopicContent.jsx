@@ -89,7 +89,12 @@ export default class TopicContent extends React.Component {
                 <Button bsSize='sm' bsStyle='danger' onClick={this.deleteTopic} className='buttonRight'>Delete Topic</Button>
                 <Button bsSize='sm' bsStyle='info' onClick={this.showModal}>Edit Topic</Button>
 
-                <WidgetList />
+                <WidgetList
+                    courseId={this.state.courseId}
+                    moduleId={this.state.moduleId}
+                    lessonId={this.state.lessonId}
+                    topicId={this.state.topicId}
+                />
 
                 <Modal
                     show={this.state.showModal}

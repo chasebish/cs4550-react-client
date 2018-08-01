@@ -22,25 +22,25 @@ const WidgetComponent = ({ widget, widgets, deleteWidget, updateWidget, moveDown
                 Delete
             </Button>
             <Button
-                disabled={widget.order === widgets.length}
+                disabled={widget.widgetOrder === widgets.length}
                 className='pull-right deleteWidgetButton middleButton'
                 bsStyle='warning'
-                onClick={() => moveDown(widget, widget.order)}>
+                onClick={() => moveDown(widget, widget.widgetOrder)}>
                 <Glyphicon glyph="menu-down" />
             </Button>
             <Button
-                disabled={widget.order <= 1}
+                disabled={widget.widgetOrder <= 1}
                 className='pull-right deleteWidgetButton'
                 bsStyle='warning'
-                onClick={() => moveUp(widget, widget.order)}>
+                onClick={() => moveUp(widget, widget.widgetOrder)}>
                 <Glyphicon glyph="menu-up" />
             </Button>
             <div>
-                {widget.type === 'HEADING' && <Heading widget={widget} updateWidget={updateWidget} />}
-                {widget.type === 'LIST' && <List widget={widget} updateWidget={updateWidget} />}
-                {widget.type === 'PARAGRAPH' && <Paragraph widget={widget} updateWidget={updateWidget} />}
-                {widget.type === 'LINK' && <Link widget={widget} updateWidget={updateWidget} />}
-                {widget.type === 'IMAGE' && <Image widget={widget} updateWidget={updateWidget} />}
+                {widget.className === 'HEADING' && <Heading widget={widget} updateWidget={updateWidget} />}
+                {widget.className === 'LIST' && <List widget={widget} updateWidget={updateWidget} />}
+                {widget.className === 'PARAGRAPH' && <Paragraph widget={widget} updateWidget={updateWidget} />}
+                {widget.className === 'LINK' && <Link widget={widget} updateWidget={updateWidget} />}
+                {widget.className === 'IMAGE' && <Image widget={widget} updateWidget={updateWidget} />}
             </div>
         </li>
     )
@@ -56,8 +56,8 @@ const mapDispatchToProps = dispatch => (
     {
         deleteWidget: (widgetId) => dispatch({ type: 'DELETE_WIDGET', widgetId }),
         updateWidget: (widget) => dispatch({ type: 'UPDATE_WIDGET', widget }),
-        moveDown: (widget, order) => dispatch({ type: 'MOVE_DOWN', widget, order }),
-        moveUp: (widget, order) => dispatch({ type: 'MOVE_UP', widget, order })
+        moveDown: (widget, widgetOrder) => dispatch({ type: 'MOVE_DOWN', widget, widgetOrder }),
+        moveUp: (widget, widgetOrder) => dispatch({ type: 'MOVE_UP', widget, widgetOrder })
     }
 )
 
