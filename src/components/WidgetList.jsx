@@ -61,7 +61,7 @@ const WidgetListComponent = ({ widgets, createWidget, saveWidgets, togglePreview
 
                                 let widget = {
                                     name: widgetName.value,
-                                    id: new Date().getTime(),
+                                    id: newOrder,
                                     className: widgetType.value,
                                     widgetOrder: newOrder,
                                     editorOpen: true
